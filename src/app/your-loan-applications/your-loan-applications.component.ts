@@ -11,4 +11,12 @@ export class YourLoanApplicationsComponent implements OnInit {
   ngOnInit(): void {
     console.log('yes');
   }
+
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
 }
