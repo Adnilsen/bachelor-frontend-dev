@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CaseService} from "../core/case.service";
+import { CaseService } from '../core/case/case.service';
+import { Case } from '../shared/interfaces/case.interface';
 
 @Component({
   selector: 'app-your-loan-applications',
@@ -7,11 +8,17 @@ import {CaseService} from "../core/case.service";
   styleUrls: ['./your-loan-applications.component.scss'],
 })
 export class YourLoanApplicationsComponent implements OnInit {
+  cases: Case[] = [];
+
+  loading!: boolean;
+
   constructor(private caseService: CaseService) {}
 
   ngOnInit(): void {
-    console.log('yes');
-    console.log(this.caseService.getCases());
+    this.caseService.getCases().subscribe((cases) => {
+      this.loading = false;
+      this.cases = cases;
+    });
   }
 
   formatLabel(value: number) {

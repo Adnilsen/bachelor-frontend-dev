@@ -1,12 +1,19 @@
 <body>
-  <p>your-loan-applications works! yes !</p>
-  <mat-slider
-    thumbLabel
-    [displayWith]="formatLabel"
-    tickInterval="1000"
-    step="1000"
-    min="0"
-    max="100000"
-    aria-label="units"
-  ></mat-slider>
+<mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
+  <article *ngIf='!loading'>
+    <h1>Dine lånesøknader</h1>
+    <!--
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="1000"
+      step="1000"
+      min="0"
+      max="100000"
+      aria-label="units"
+    ></mat-slider> -->
+    <section>
+      <app-expansion-panel [cases]="cases"></app-expansion-panel>
+    </section>
+  </article>
 </body>

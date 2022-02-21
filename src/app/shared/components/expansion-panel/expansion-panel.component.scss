@@ -1,0 +1,58 @@
+example-action-buttons {
+  padding-bottom: 20px;
+}
+
+mat-expansion-panel{
+  border: 1px solid grey;
+}
+
+mat-panel-title {
+  font-size: 1rem;
+}
+
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+  flex-grow: 0;
+  width: auto;
+  white-space: nowrap;
+}
+
+.mat-content {
+  flex-grow: 0;
+}
+
+mat-expansion-panel-header .mat-expansion-panel-header-description {
+  place-content: end;
+}
+
+mat-expansion-panel-header p {
+  margin-left: 20px;
+}
+
+.mat-action-row {
+  place-content: start;
+}
+
+.mat-action-row button.mat-button-base {
+  margin-left: 0;
+}
+
+.mat-chip.mat-standard-chip::after {
+  background: none !important; // color that you want on hover
+}
+
+.mat-standard-chip {
+  min-height: 22px;
+  font-size: 13px;
+  padding-top: 8px;
+}
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background-color: #edf8ed;
+  color: black;
+  border: 1px solid #cfe488;
+}
+
+img {
+  max-width: 1.1rem;
+  margin-right: 4px;
+}
