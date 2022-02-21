@@ -1,0 +1,19 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let case of cases" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ case.product.type }}
+      </mat-panel-title>
+      <mat-panel-description class="mat-expansion-panel-header-description">
+        <mat-chip-list>
+          <mat-chip selected> <img [src]="'assets/images/success.svg'" alt=''/> {{ case.status }}</mat-chip>
+        </mat-chip-list>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Lånetaker: {{ case.customer.customerFirstName + ' ' + case.customer.customerLastName }}</p>
+    <p>Påbegynt: {{ case.date | date: 'dd:MM.YY kl. HH:mm' }}</p>
+    <mat-action-row>
+      <button mat-raised-button color="primary">NEXT STEP</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
