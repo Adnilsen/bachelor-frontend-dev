@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Case } from '../interfaces/case.interface';
+import { Case } from '../../interfaces/case.interface';
 
 @Component({
   selector: 'app-expansion-panel',
@@ -15,7 +15,7 @@ export class ExpansionPanelComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('yes');
+    console.log(this.cases);
   }
 
   mapImageSource(status: string) {

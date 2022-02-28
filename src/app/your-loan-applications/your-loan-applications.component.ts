@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CaseService } from '../core/case.service';
+import { CaseService } from '../core/case/case.service';
 import { Case } from '../shared/interfaces/case.interface';
 
 @Component({
@@ -10,10 +10,13 @@ import { Case } from '../shared/interfaces/case.interface';
 export class YourLoanApplicationsComponent implements OnInit {
   cases: Case[] = [];
 
+  loading!: boolean;
+
   constructor(private caseService: CaseService) {}
 
   ngOnInit(): void {
     this.caseService.getCases().subscribe((cases) => {
+      this.loading = false;
       this.cases = cases;
     });
   }

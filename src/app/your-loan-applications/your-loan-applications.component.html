@@ -1,5 +1,6 @@
 <body>
-  <article>
+<mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
+  <article *ngIf='!loading'>
     <h1>Dine lånesøknader</h1>
     <!--
     <mat-slider
