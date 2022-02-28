@@ -1,0 +1,120 @@
+<body>
+  <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
+  <section *ngIf='!loading'>
+    <div>
+      <h1>Boligen vi har kjøpt</h1>
+      <h2>Sikkerhet i bolig</h2>
+      <p>Dere må stille med sikkerhet i boligen dere har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.</p>
+    </div>
+    <div class='expandable-container'>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header collapsedHeight="5rem" expandedHeight="5rem">
+            <mat-panel-title>
+              <img [src]="'assets/images/house.svg'" alt=''/>
+              <div>
+                <strong><p>
+                  Adresse
+                </p></strong>
+                <p>
+                  Akersgata 2
+                </p>
+                <p>
+                  0465 Oslo
+                </p>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <form [formGroup]='form'>
+              <label style='font-weight: bold' class='selectorLabel'>Type bolig</label>
+              <mat-form-field appearance="fill">
+                <mat-label>Type bolig</mat-label>
+                <mat-select [(value)]="selectedType">
+                  <mat-option *ngFor='let type of collateralTypes' [value]='type.type' (onSelectionChange)='selectedChange(type.type)'>{{type.value}}</mat-option>
+                </mat-select>
+                <mat-error>*Velg megler</mat-error>
+              </mat-form-field>
+              <div *ngIf='selectedType === "HOUSING-CO-OPERATIVE"'>
+                <label style='font-weight: bold' class='selectorLabel'>Andelsnummer</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Fyll inn andelsnummer</mat-label>
+                  <input matInput >
+                  <mat-error>*Fyll inn andelsnummer</mat-error>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Kjøpesum *</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Kjøpesum</mat-label>
+                  <input matInput [formControl]="purhaseAmount" [mask]="'separator'">
+                  <mat-error *ngIf="purhaseAmount.invalid">*Fyll inn kjøpesum</mat-error>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Fellesgjeld *</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Fellesgjeld</mat-label>
+                  <input matInput [formControl]="sharedDebt" [mask]="'separator'">
+                  <mat-error *ngIf="sharedDebt.invalid">*Fyll inn fellesgjeld</mat-error>
+                </mat-form-field>
+              </div>
+              <div *ngIf='selectedType === "SELVEIER"'>
+                <label style='font-weight: bold' class='selectorLabel'>Adresse *</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Fyll inn adresse</mat-label>
+                  <input matInput [formControl]="addressControl">
+                  <mat-error *ngIf='addressControl.invalid'>*Fyll inn adresse</mat-error>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Postnummer *</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Postnummer</mat-label>
+                  <input matInput [formControl]="postalNumberControl" [mask]="'0000'">
+                  <mat-error *ngIf="postalNumberControl.invalid">*Fyll inn postnummer</mat-error>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Gårdsnummer</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Gårdsnummer</mat-label>
+                  <input matInput>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Bruksnummer</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Bruksnummer</mat-label>
+                  <input matInput>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Seksjonsnummer</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Seksjonsnummer</mat-label>
+                  <input matInput>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Festenummer</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Festenummer</mat-label>
+                  <input matInput>
+                </mat-form-field>
+                <label style='font-weight: bold' class='selectorLabel'>Kjøpesum *</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Kjøpesum</mat-label>
+                  <input matInput [formControl]="purhaseAmount" [mask]="'separator'">
+                  <mat-error *ngIf="purhaseAmount.invalid">*Fyll inn kjøpesum</mat-error>
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div style='margin-top: 2rem;'>
+      <label style='font-weight: bold;' class='selectorLabel'>Har kjøper av boligen en ektefelle som skal bo i boligen, uten å eie den? *</label>
+      <mat-radio-group
+        style='margin-top: 0;'
+        aria-labelledby="radio-group-label"
+        class="radio-group"
+        [formControl]='coHabitantControl'
+        [(ngModel)]="coHabitant">
+        <mat-radio-button class="radio-button" color="primary" [value]="true">
+          Ja
+        </mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" [value]="false">
+          Nei
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </section>
+</body>

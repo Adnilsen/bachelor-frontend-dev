@@ -12,13 +12,19 @@ import { YourLoanApplicationsModule } from './your-loan-applications/your-loan-a
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent],
+  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent, CollateralPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,6 +39,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatInputModule,
+    NgxMaskModule.forRoot(),
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
