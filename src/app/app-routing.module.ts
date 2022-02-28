@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.component';
+import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
       import('./your-loan-applications/your-loan-applications.module').then((m) => m.YourLoanApplicationsModule),
   },
   { path: 'broker', component: BrokerPageComponent },
+  { path: 'collateral', component: CollateralPageComponent },
 ];
 
 @NgModule({

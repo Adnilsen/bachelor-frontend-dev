@@ -15,7 +15,7 @@ export class ExpansionPanelComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('yes');
+    console.log(this.cases);
   }
 
   mapImageSource(status: string) {
