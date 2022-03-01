@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CollateralPageComponent } from './collateral-page.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('CollateralPageComponent', () => {
   let component: CollateralPageComponent;
@@ -8,9 +9,9 @@ describe('CollateralPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CollateralPageComponent ]
-    })
-    .compileComponents();
+      declarations: [CollateralPageComponent],
+      imports: [TranslateModule.forRoot()],
+    }).compileComponents();
   });
 
   beforeEach(() => {
