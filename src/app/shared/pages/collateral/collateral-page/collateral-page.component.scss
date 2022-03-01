@@ -1,9 +1,17 @@
+@import "../../../../../assets/styling/variables.scss";
+
 body {
   display: flex;
   justify-content: center;
 }
 section {
   width: 60%;
+}
+
+@media (max-width: 1000px) {
+  section {
+    width: 100%;
+  }
 }
 
 .selectorLabel {
