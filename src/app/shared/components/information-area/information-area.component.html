@@ -1,0 +1,12 @@
+<section>
+  <div class='outer-container'>
+    <div class='left-container'></div>
+    <div class='right-container'>
+      <img src='../../../../assets/images/exclamation-mark.svg' alt=''>
+      <div class='text-container'>
+        <b><p *ngIf='headerText'>{{headerText}}</p></b>
+        <p [innerHTML]='mainText'></p>
+      </div>
+     </div>
+  </div>
+</section>

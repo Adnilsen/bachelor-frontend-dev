@@ -4,11 +4,11 @@
     <div>
       <h1>{{'broker-page.title' | translate}}</h1>
       <h2>{{'broker-page.sub-title' | translate}}</h2>
-      <p>{{'broker-page.information' | translate}}</p>
+      <app-information-area [headerText]='"broker-page.information"' [mainText]='"Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt."'></app-information-area>
     </div>
-    <div>
+    <section style='width: 100%'>
       <form [formGroup]='form'>
-        <p style='font-weight: bold' class='selectorLabel'>{{'broker-page.expansion-panel.title' | translate}}</p>
+        <p class='selectorLabel'>Velg megler du vil hente kjøpskontrakt fra</p>
         <mat-form-field appearance="fill">
           <mat-label>{{'broker-page.expansion-panel.label' | translate}}</mat-label>
           <mat-select [formControl]="brokerControl">
@@ -18,11 +18,11 @@
           <mat-error *ngIf="brokerControl.invalid">{{'broker-page.expansion-panel.error' | translate}}</mat-error>
         </mat-form-field>
       </form>
-    </div>
-    <div class='navigation-button-container'>
-      <button mat-stroked-button color='warn' type=''>{{'broker-page.next-btn' | translate}}</button>
-      <button mat-raised-button color="primary" type='submit' (click)='next()'>{{'broker-page.abort-btn' | translate}}</button>
-    </div>
+    </section>
+    <section class='navigation-button-container'>
+      <button mat-stroked-button color='warn' type=''>Avbryt</button>
+      <button mat-raised-button color="primary" type='submit' (click)='next()'>Neste</button>
+    </section>
   </section>
 </body>
 

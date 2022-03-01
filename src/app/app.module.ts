@@ -24,13 +24,14 @@ import { ToolbarComponent } from './shared/components/toolbar/toolbar.component'
 import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
+import { InformationAreaComponent } from './shared/components/information-area/information-area.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent, CollateralPageComponent],
+  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent, CollateralPageComponent, InformationAreaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
