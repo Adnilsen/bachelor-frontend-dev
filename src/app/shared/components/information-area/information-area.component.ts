@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './information-area.component.html',
   styleUrls: ['./information-area.component.scss'],
 })
-export class InformationAreaComponent  {
+export class InformationAreaComponent {
   @Input() headerText?: string;
 
   @Input() mainText!: string;
@@ -13,6 +13,4 @@ export class InformationAreaComponent  {
   @Input() style?: string;
 
   constructor() {}
-
-
 }

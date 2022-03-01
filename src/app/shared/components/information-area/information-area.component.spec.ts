@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InformationAreaComponent } from './information-area.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('InformationAreaComponent', () => {
   let component: InformationAreaComponent;
@@ -8,9 +9,9 @@ describe('InformationAreaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InformationAreaComponent ]
-    })
-    .compileComponents();
+      declarations: [InformationAreaComponent],
+      imports: [TranslateModule.forRoot()],
+    }).compileComponents();
   });
 
   beforeEach(() => {

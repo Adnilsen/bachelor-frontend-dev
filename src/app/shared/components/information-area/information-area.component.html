@@ -4,8 +4,8 @@
     <div class='right-container'>
       <img src='../../../../assets/images/exclamation-mark.svg' alt=''>
       <div class='text-container'>
-        <b><p *ngIf='headerText'>{{headerText}}</p></b>
-        <p [innerHTML]='mainText'></p>
+        <b><p *ngIf='headerText'>{{headerText | translate}}</p></b>
+        <p [innerHTML]='mainText | translate'></p>
       </div>
      </div>
   </div>
