@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-collateral-page',
@@ -12,12 +13,6 @@ export class CollateralPageComponent implements OnInit {
   panelOpenState = false;
 
   form!: FormGroup;
-
-  /*collateralControl = new FormControl('', Validators.required);
-
-  housingCoOperative = new FormControl('', Validators.required);
-
-   */
 
   selectedType = 'HOUSING-CO-OPERATIVE';
 
@@ -38,7 +33,9 @@ export class CollateralPageComponent implements OnInit {
     { type: 'SELVEIER', value: 'Selveier' },
   ];
 
-  constructor() {}
+  coHabitantForm!: FormGroup;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
 
@@ -52,13 +49,38 @@ export class CollateralPageComponent implements OnInit {
       debt: this.sharedDebt,
       address: this.addressControl,
       postalNumber: this.postalNumberControl,
+    });
+
+    this.coHabitantForm = new FormGroup({
       cohabitant: this.coHabitantControl,
     });
 
+    console.log(this.coHabitant);
     this.loading = false;
   }
 
   selectedChange(selectedType: string) {
 
+  }
+
+  previous(){
+    this.router.navigate(['broker']);
+  }
+
+  cancel(){
+    this.router.navigate(['your-loan-applications']);
+  }
+
+  isClicked: boolean = false;
+
+  next() {
+    if(this.coHabitant !== undefined){
+      this.router.navigate(['collateral']);
+    }
+    this.isClicked = true;
+  }
+
+  showError(){
+    return this.isClicked && this.coHabitant == undefined;
   }
 }

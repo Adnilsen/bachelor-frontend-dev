@@ -102,6 +102,7 @@
     </div>
     <div style='margin-top: 2rem;'>
       <label style='font-weight: bold;' class='selectorLabel'>Har kjøper av boligen en ektefelle som skal bo i boligen, uten å eie den? *</label>
+      <form [formGroup]='coHabitantForm'>
       <mat-radio-group
         style='margin-top: 0;'
         aria-labelledby="radio-group-label"
@@ -115,6 +116,13 @@
           Nei
         </mat-radio-button>
       </mat-radio-group>
+      <mat-error *ngIf="showError()">*Velg om du har medlåntaker</mat-error>
+      </form>
+    </div>
+    <div class='navigation-button-container'>
+      <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
+      <button mat-stroked-button color='warn' (click)='cancel()'>Avbryt</button>
+      <button mat-raised-button color="primary" type='submit' (click)='next()'>Neste</button>
     </div>
   </section>
 </body>
