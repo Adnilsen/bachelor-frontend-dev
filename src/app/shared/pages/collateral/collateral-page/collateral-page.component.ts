@@ -13,6 +13,7 @@ export class CollateralPageComponent implements OnInit {
 
   form!: FormGroup;
 
+  // TODO Fix validation
   /*collateralControl = new FormControl('', Validators.required);
 
   housingCoOperative = new FormControl('', Validators.required);
@@ -35,14 +36,12 @@ export class CollateralPageComponent implements OnInit {
 
   collateralTypes = [
     { type: 'HOUSING-CO-OPERATIVE', value: 'Borettslag' },
-    { type: 'SELVEIER', value: 'Selveier' },
+    { type: 'CONDOMINIUM', value: 'Selveier' },
   ];
 
   constructor() {}
 
   ngOnInit(): void {
-
-
     this.form = new FormGroup({
       /*collateral: this.collateralControl,
       coOperative: this.housingCoOperative,
@@ -58,7 +57,5 @@ export class CollateralPageComponent implements OnInit {
     this.loading = false;
   }
 
-  selectedChange(selectedType: string) {
-
-  }
+  selectedChange(selectedType: string) {}
 }
