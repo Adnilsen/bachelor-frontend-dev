@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CollateralPageComponent } from './collateral-page.component';
 
 describe('CollateralPageComponent', () => {
@@ -8,7 +9,9 @@ describe('CollateralPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CollateralPageComponent ]
+      declarations: [ CollateralPageComponent ],
+      imports: [HttpClientTestingModule,
+      RouterTestingModule.withRoutes([])]
     })
     .compileComponents();
   });
