@@ -2,10 +2,11 @@
   "broker-page": {
     "title": "Boligen vi har kjøpt",
     "sub-title": "Hent kjøpskontrakt fra megler",
-    "information": "Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.",
+    "information-title": "Hvorfor velge megler?",
+    "information-content": "Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.",
     "expansion-panel": {
-      "title": "Megler",
-      "label": "Velg megler",
+      "title": "Velg megler du vil hente kjøpskontrakt fra",
+      "label": "Megler",
       "placeholder": "-- Ingen --",
       "error": "*Velg megler"
     },
@@ -15,7 +16,8 @@
   "collateral-page": {
     "title": "Boligen vi har kjøpt",
     "sub-title": "Sikkerhet i bolig",
-    "information": "Dere må stille med sikkerhet i boligen dere har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.",
+    "information-title": "Hvorfor må du stille sikkerhet i boligen?",
+    "information-content": "Dere må stille med sikkerhet i boligen dere har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.",
     "expansion-panel": {
       "title": "Adresse",
       "sub-title": "Akersgata 2 <br>0465 Oslo",
