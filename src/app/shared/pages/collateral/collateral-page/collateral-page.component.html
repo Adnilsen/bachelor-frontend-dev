@@ -119,10 +119,10 @@
       <mat-error *ngIf="this.isClicked && this.coHabitant == undefined">*Velg om du har medlåntaker</mat-error>
       </form>
     </div>
-    <div class='navigation-button-container'>
+    <section>
       <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
       <button mat-stroked-button color='warn' (click)='cancel()'>Avbryt</button>
       <button mat-raised-button color="primary" form='coHabForm' type='submit'>Neste</button>
-    </div>
+    </section>
   </section>
 </body>
