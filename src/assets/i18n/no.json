@@ -55,7 +55,8 @@
     "radio-button":{
       "title": "Har kjøper av boligen en ektefelle som skal bo i boligen, uten å eie den? *",
       "yes": "Ja",
-      "no": "Nei"
+      "no": "Nei",
+      "co-applicant-error": "*Velg om du har medlåntaker"
     }
   }
 }
