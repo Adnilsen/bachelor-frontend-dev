@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
 
 @Component({
@@ -55,7 +55,6 @@ export class CollateralPageComponent implements OnInit {
       cohabitant: this.coHabitantControl,
     });
 
-    console.log(this.coHabitant);
     this.loading = false;
   }
 
@@ -74,13 +73,9 @@ export class CollateralPageComponent implements OnInit {
   isClicked: boolean = false;
 
   next() {
-    if(this.coHabitant !== undefined){
+    if(this.coHabitantForm.valid){
       this.router.navigate(['collateral']);
     }
     this.isClicked = true;
-  }
-
-  showError(){
-    return this.isClicked && this.coHabitant == undefined;
   }
 }
