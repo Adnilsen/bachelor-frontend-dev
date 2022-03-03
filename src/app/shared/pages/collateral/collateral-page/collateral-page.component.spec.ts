@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CollateralPageComponent } from './collateral-page.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('CollateralPageComponent', () => {
   let component: CollateralPageComponent;
@@ -11,7 +12,8 @@ describe('CollateralPageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ CollateralPageComponent ],
       imports: [HttpClientTestingModule,
-      RouterTestingModule.withRoutes([])]
+      RouterTestingModule.withRoutes([]),
+        TranslateModule.forRoot()]
     })
     .compileComponents();
   });

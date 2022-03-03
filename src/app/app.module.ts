@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatSliderModule } from '@angular/material/slider';
 import { YourLoanApplicationsModule } from './your-loan-applications/your-loan-applications.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -17,14 +17,21 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMaskModule } from 'ngx-mask';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
+import { InformationAreaComponent } from './shared/components/information-area/information-area.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent, CollateralPageComponent],
+  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent, CollateralPageComponent, InformationAreaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,6 +51,13 @@ import { CollateralPageComponent } from './shared/pages/collateral/collateral-pa
     MatInputModule,
     NgxMaskModule.forRoot(),
     MatRadioModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,9 +2,9 @@
   <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
   <section *ngIf='!loading'>
     <div>
-      <h1>Boligen vi har kjøpt</h1>
-      <h2>Sikkerhet i bolig</h2>
-      <p>Dere må stille med sikkerhet i boligen dere har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.</p>
+      <h1>{{'collateral-page.title' | translate}}</h1>
+      <h2>{{'collateral-page.sub-title' | translate}}</h2>
+      <app-information-area [headerText]='"collateral-page.information-title"' [mainText]='"collateral-page.information-content"'></app-information-area>
     </div>
     <div class='expandable-container'>
       <mat-accordion>
@@ -14,85 +14,78 @@
               <img [src]="'assets/images/house.svg'" alt=''/>
               <div>
                 <strong><p>
-                  Adresse
+                  {{'collateral-page.expansion-panel.title' | translate}}
                 </p></strong>
-                <p>
-                  Akersgata 2
-                </p>
-                <p>
-                  0465 Oslo
-                </p>
+                <p [innerHTML]="'collateral-page.expansion-panel.sub-title' | translate"></p>
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div>
             <form [formGroup]='form'>
-              <label style='font-weight: bold' class='selectorLabel'>Type bolig</label>
+              <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.housing-type-title' | translate}}</label>
               <mat-form-field appearance="fill">
-                <mat-label>Type bolig</mat-label>
+                <mat-label>{{'collateral-page.expansion-panel.content.housing-type-sub-label' | translate}}</mat-label>
                 <mat-select [(value)]="selectedType">
                   <mat-option *ngFor='let type of collateralTypes' [value]='type.type' (onSelectionChange)='selectedChange(type.type)'>{{type.value}}</mat-option>
                 </mat-select>
                 <mat-error>*Velg megler</mat-error>
               </mat-form-field>
               <div *ngIf='selectedType === "HOUSING-CO-OPERATIVE"'>
-                <label style='font-weight: bold' class='selectorLabel'>Andelsnummer</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.housing-co-operative.unit-number' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Fyll inn andelsnummer</mat-label>
-                  <input matInput >
-                  <mat-error>*Fyll inn andelsnummer</mat-error>
+                  <mat-label>{{'collateral-page.expansion-panel.content.housing-co-operative.unit-number-sub-label' | translate}}</mat-label>
+                  <input matInput>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Kjøpesum *</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.purchase-amount-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Kjøpesum</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.purchase-amount-title' | translate}}</mat-label>
                   <input matInput [formControl]="purhaseAmount" [mask]="'separator'">
-                  <mat-error *ngIf="purhaseAmount.invalid">*Fyll inn kjøpesum</mat-error>
+                  <mat-error *ngIf="purhaseAmount.invalid">{{'collateral-page.expansion-panel.content.purchase-amount-error' | translate}}</mat-error>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Fellesgjeld *</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.housing-co-operative.shared-debt-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Fellesgjeld</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.housing-co-operative.shared-debt-sub-title' | translate}}</mat-label>
                   <input matInput [formControl]="sharedDebt" [mask]="'separator'">
-                  <mat-error *ngIf="sharedDebt.invalid">*Fyll inn fellesgjeld</mat-error>
+                  <mat-error *ngIf="sharedDebt.invalid">{{'collateral-page.expansion-panel.content.housing-co-operative.shared-debt-error' | translate}}</mat-error>
                 </mat-form-field>
               </div>
-              <div *ngIf='selectedType === "SELVEIER"'>
-                <label style='font-weight: bold' class='selectorLabel'>Adresse *</label>
+              <div *ngIf='selectedType === "CONDOMINIUM"'>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.address-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Fyll inn adresse</mat-label>
                   <input matInput [formControl]="addressControl">
-                  <mat-error *ngIf='addressControl.invalid'>*Fyll inn adresse</mat-error>
+                  <mat-error *ngIf='addressControl.invalid'>{{'collateral-page.expansion-panel.content.condominium.address-error' | translate}}</mat-error>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Postnummer *</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.postal-code-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Postnummer</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.condominium.postal-code-sub-title' | translate}}</mat-label>
                   <input matInput [formControl]="postalNumberControl" [mask]="'0000'">
-                  <mat-error *ngIf="postalNumberControl.invalid">*Fyll inn postnummer</mat-error>
+                  <mat-error *ngIf="postalNumberControl.invalid">{{'collateral-page.expansion-panel.content.condominium.postal-code-error' | translate}}</mat-error>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Gårdsnummer</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.cadastral-number-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Gårdsnummer</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.condominium.cadastral-number-sub-title' | translate}}</mat-label>
                   <input matInput>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Bruksnummer</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.title-number-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Bruksnummer</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.condominium.title-number-title' | translate}}</mat-label>
                   <input matInput>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Seksjonsnummer</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.section-number-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Seksjonsnummer</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.condominium.section-number-sub-title' | translate}}</mat-label>
                   <input matInput>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Festenummer</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.lease-number-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Festenummer</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.condominium.lease-number-sub-title' | translate}}</mat-label>
                   <input matInput>
                 </mat-form-field>
-                <label style='font-weight: bold' class='selectorLabel'>Kjøpesum *</label>
+                <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.purchase-amount-title' | translate}}</label>
                 <mat-form-field appearance="fill">
-                  <mat-label>Kjøpesum</mat-label>
+                  <mat-label>{{'collateral-page.expansion-panel.content.purchase-amount-sub-title' | translate}}</mat-label>
                   <input matInput [formControl]="purhaseAmount" [mask]="'separator'">
-                  <mat-error *ngIf="purhaseAmount.invalid">*Fyll inn kjøpesum</mat-error>
+                  <mat-error *ngIf="purhaseAmount.invalid">{{'collateral-page.expansion-panel.content.purchase-amount-error' | translate}}</mat-error>
                 </mat-form-field>
               </div>
             </form>
@@ -101,8 +94,7 @@
       </mat-accordion>
     </div>
     <div style='margin-top: 2rem;'>
-      <label style='font-weight: bold;' class='selectorLabel'>Har kjøper av boligen en ektefelle som skal bo i boligen, uten å eie den? *</label>
-      <form [formGroup]='coHabitantForm' id='coHabForm' (ngSubmit)="next()">
+      <label style='font-weight: bold;' class='selectorLabel'>{{'collateral-page.radio-button.title' | translate}}</label>
       <mat-radio-group
         style='margin-top: 0;'
         aria-labelledby="radio-group-label"
@@ -110,19 +102,12 @@
         [formControl]='coHabitantControl'
         [(ngModel)]="coHabitant">
         <mat-radio-button class="radio-button" color="primary" [value]="true">
-          Ja
+          {{'collateral-page.radio-button.yes' | translate}}
         </mat-radio-button>
         <mat-radio-button class="radio-button" color="primary" [value]="false">
-          Nei
+          {{'collateral-page.radio-button.no' | translate}}
         </mat-radio-button>
       </mat-radio-group>
-      <mat-error *ngIf="this.isClicked && this.coHabitant == undefined">*Velg om du har medlåntaker</mat-error>
-      </form>
     </div>
-    <section>
-      <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
-      <button mat-stroked-button color='warn' (click)='cancel()'>Avbryt</button>
-      <button mat-raised-button color="primary" form='coHabForm' type='submit'>Neste</button>
-    </section>
   </section>
 </body>

@@ -2,10 +2,15 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 4rem;
 }
 
 .center {
   width: 60%;
+}
+
+@media (max-width: 600px) {
+  .center {
+    width: 80%;
+  }
 }
 

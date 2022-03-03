@@ -2,27 +2,27 @@
   <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
   <section *ngIf='!loading'>
     <div>
-      <h1>Boligen vi har kjøpt</h1>
-      <h2>Hent kjøpskontrakt fra megler</h2>
-      <p>Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere!<br> Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.</p>
+      <h1>{{'broker-page.title' | translate}}</h1>
+      <h2>{{'broker-page.sub-title' | translate}}</h2>
+      <app-information-area [headerText]='"broker-page.information-title"' [mainText]='"broker-page.information-content"'></app-information-area>
     </div>
-    <div>
+    <section style='width: 100%'>
       <form [formGroup]='form'>
-        <p style='font-weight: bold' class='selectorLabel'>Megler</p>
+        <p class='selectorLabel'>{{'broker-page.expansion-panel.title' | translate}}</p>
         <mat-form-field appearance="fill">
-          <mat-label>Velg megler</mat-label>
+          <mat-label>{{'broker-page.expansion-panel.label' | translate}}</mat-label>
           <mat-select [formControl]="brokerControl">
-            <mat-option>-- Ingen --</mat-option>
+            <mat-option>{{'broker-page.expansion-panel.placeholder' | translate}}</mat-option>
             <mat-option *ngFor='let broker of brokers' [value]='broker'>{{broker}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="brokerControl.invalid">*Velg megler</mat-error>
+          <mat-error *ngIf="brokerControl.invalid">{{'broker-page.expansion-panel.error' | translate}}</mat-error>
         </mat-form-field>
       </form>
-    </div>
-    <div class='navigation-button-container'>
-      <button mat-stroked-button color='warn' type=''>Avbryt</button>
-      <button mat-raised-button color="primary" type='submit' (click)='next()'>Neste</button>
-    </div>
+    </section>
+    <section class='navigation-button-container'>
+      <button mat-stroked-button color='warn' type=''>{{'broker-page.abort-btn' | translate}}</button>
+      <button mat-raised-button color="primary" type='submit' (click)='next()'>{{'broker-page.next-btn' | translate}}</button>
+    </section>
   </section>
 </body>
 

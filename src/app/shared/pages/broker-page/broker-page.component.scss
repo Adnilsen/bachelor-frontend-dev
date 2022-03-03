@@ -1,3 +1,5 @@
+@import "../../../../assets/styling/variables.scss";
+
 body {
   display: flex;
   justify-content: center;
@@ -6,12 +8,14 @@ section {
   width: 60%;
 }
 
-.selectorLabel {
-  margin-bottom: 0.2rem;
+@media (max-width: 1000px) {
+  section {
+    width: 100%;
+  }
 }
 
-.navigation-button-container{
-  margin-top: 1rem;
+.selectorLabel {
+  margin-bottom: 0.2rem;
 }
 
 button{
