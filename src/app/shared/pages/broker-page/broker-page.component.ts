@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BrokerService } from '../../../core/broker/broker.service';
 import { Router } from '@angular/router';
+import {Broker} from "../../interfaces/broker.interface";
 
 @Component({
   selector: 'app-broker-page',
@@ -15,7 +16,7 @@ export class BrokerPageComponent implements OnInit {
 
   brokerControl = new FormControl('', Validators.required);
 
-  brokers: string[] = [];
+  brokers: Broker[] = [];
 
   constructor(private brokerService: BrokerService, private router: Router) {}
 
@@ -26,7 +27,11 @@ export class BrokerPageComponent implements OnInit {
 
     this.loading = false;
 
-    this.brokers = this.brokerService.getBrokers();
+
+     this.brokerService.getBrokers().subscribe((brokers) => {
+      this.loading = false;
+      this.brokers = brokers;
+    });
   }
 
   next() {
