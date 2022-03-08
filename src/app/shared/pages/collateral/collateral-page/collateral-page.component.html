@@ -95,6 +95,7 @@
     </div>
     <div style='margin-top: 2rem;'>
       <label style='font-weight: bold;' class='selectorLabel'>{{'collateral-page.radio-button.title' | translate}}</label>
+      <form [formGroup]='coHabitantForm' id='coHabForm' (ngSubmit)="next()">
       <mat-radio-group
         style='margin-top: 0;'
         aria-labelledby="radio-group-label"
@@ -108,6 +109,13 @@
           {{'collateral-page.radio-button.no' | translate}}
         </mat-radio-button>
       </mat-radio-group>
+        <mat-error *ngIf="isClicked && coHabitant === undefined">{{'collateral-page.radio-button.co-applicant-error' | translate}}</mat-error>
+      </form>
     </div>
+    <section>
+      <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
+      <button mat-stroked-button color='warn' (click)='cancel()'>Avbryt</button>
+      <button mat-raised-button color="primary" form='coHabForm' type='submit'>Neste</button>
+    </section>
   </section>
 </body>
