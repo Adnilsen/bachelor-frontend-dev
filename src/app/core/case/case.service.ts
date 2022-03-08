@@ -9,6 +9,6 @@ export class CaseService {
   constructor(private httpClient: HttpClient) {}
 
   getCases() {
-    return this.httpClient.get<Case[]>('http://localhost:8081/cases');
+    return this.httpClient.get<Case[]>('http://localhost:8080/cases');
   }
 }

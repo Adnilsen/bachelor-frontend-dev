@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient} from "@angular/common/http";
+import {Broker} from "../../shared/interfaces/broker.interface";
 
 @Injectable({
   providedIn: 'root',
 })
 export class BrokerService {
-  constructor() {}
+  constructor(private httpClient : HttpClient) {}
 
   getBrokers() {
-    return [
+   /* return [
       'Krogsveen',
       'Privatmegleren',
       'Aktiv Eiendomsmegling',
@@ -15,6 +17,9 @@ export class BrokerService {
       'Eiendomsmegler 1',
       'Eiendomsmegler Vest',
       'Nordvik',
-    ];
+
+
+    ];*/
+    return this.httpClient.get<Broker[]>("http://localhost:8080/brokers");
   }
 }
