@@ -9,17 +9,6 @@ export class BrokerService {
   constructor(private httpClient : HttpClient) {}
 
   getBrokers() {
-   /* return [
-      'Krogsveen',
-      'Privatmegleren',
-      'Aktiv Eiendomsmegling',
-      'DnB Eiendom',
-      'Eiendomsmegler 1',
-      'Eiendomsmegler Vest',
-      'Nordvik',
-
-
-    ];*/
     return this.httpClient.get<Broker[]>("http://localhost:8080/brokers");
   }
 }
