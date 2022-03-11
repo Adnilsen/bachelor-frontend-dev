@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BrokerService } from '../../../core/broker/broker.service';
 import { Router } from '@angular/router';
-import {Broker} from "../../interfaces/broker.interface";
+import { Broker } from '../../interfaces/broker.interface';
 
 @Component({
   selector: 'app-broker-page',
@@ -27,14 +27,14 @@ export class BrokerPageComponent implements OnInit {
 
     this.loading = false;
 
-
-     this.brokerService.getBrokers().subscribe((brokers) => {
+    this.brokerService.getBrokers().subscribe((brokers) => {
       this.loading = false;
       this.brokers = brokers;
     });
   }
 
   next() {
+    console.log(this.form.get('broker'));
     this.form.get('broker')?.markAsTouched();
     if (this.form.valid) {
       this.router.navigate(['collateral'], { state: { broker: this.form.get('broker')?.value } });
