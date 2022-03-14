@@ -34,10 +34,9 @@ export class BrokerPageComponent implements OnInit {
   }
 
   next() {
-    console.log(this.form.get('broker'));
     this.form.get('broker')?.markAsTouched();
     if (this.form.valid) {
-      this.router.navigate(['collateral'], { state: { broker: this.form.get('broker')?.value } });
+      this.router.navigate(['collateral']);
     }
   }
 }

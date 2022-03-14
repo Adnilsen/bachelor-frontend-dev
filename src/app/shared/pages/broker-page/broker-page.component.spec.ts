@@ -8,16 +8,14 @@ import { Broker } from '../../interfaces/broker.interface';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { CollateralPageComponent } from '../collateral/collateral-page/collateral-page.component';
-
-interface SharedTestData {
-  fixture: ComponentFixture<BrokerPageComponent>;
-  component: BrokerPageComponent;
-}
+import { Router } from '@angular/router';
 
 describe('BrokerPageComponent', () => {
   let component: BrokerPageComponent;
   let fixture: ComponentFixture<BrokerPageComponent>;
   let po: PageObject;
+  let router: Router;
+  let routerSpy = jasmine.createSpyObj('Router', ['navigate']);
   const initialState = {
     brokers: [
       {
@@ -42,7 +40,7 @@ describe('BrokerPageComponent', () => {
         TranslateModule.forRoot(),
         HttpClientModule,
       ],
-      providers: [],
+      providers: [{ provide: Router, useValue: routerSpy }],
     }).compileComponents();
   });
 
@@ -51,6 +49,7 @@ describe('BrokerPageComponent', () => {
     component = fixture.componentInstance;
     component.brokers = initialState.brokers;
     po = new PageObject(fixture);
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -58,20 +57,44 @@ describe('BrokerPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should check form validety on start', () => {
+    expect(component.form.valid).toBeFalsy();
+  });
+
   it('should check size on list of brokers', () => {
     expect(component.brokers.length).toBe(2);
   });
 
-  it('should choose broker', () => {
-    po.getBrokerDropdown.nativeElement.click();
-    fixture.detectChanges();
-    expect(po.getBrokerElement.length).toBe(3);
-    po.getBrokerElement[1].nativeElement.click();
-    fixture.detectChanges();
-    console.log(component.form.get('broker'));
+  it('should check broker validety', () => {
+    let broker = component.form.controls['broker'];
+    expect(broker.valid).toBeFalsy();
   });
 
-  it('should navigate to collateral page', () => {});
+  it('should choose broker', () => {
+    let broker = component.form.controls['broker'];
+    po.getBrokerDropdown.nativeElement.click();
+    fixture.detectChanges();
+    // List contains brokers + choose none option
+    expect(po.getBrokerElement.length).toBe(3);
+
+    po.getBrokerElement[1].nativeElement.click();
+    fixture.detectChanges();
+    let text = po.getBrokerElement[1].nativeElement.innerText;
+    broker.setValue(text);
+    expect(broker.value).toBe('Nordvik');
+    expect(broker.valid).toBeTruthy();
+  });
+
+  it('should navigate to collateral page', () => {
+    let broker = component.form.controls['broker'];
+    broker.setValue('Nordvik');
+    fixture.detectChanges();
+    po.getnextButton.nativeElement.click();
+    fixture.detectChanges();
+    const spy = router.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+    expect(navArgs[0]).toBe('collateral');
+  });
 
   class PageObject {
     constructor(private fixture: ComponentFixture<BrokerPageComponent>) {}
@@ -85,7 +108,7 @@ describe('BrokerPageComponent', () => {
     }
 
     get getnextButton(): DebugElement {
-      return fixture.debugElement.query(By.css('.mat-primary'));
+      return fixture.debugElement.query(By.css('.nextBtn'));
     }
   }
 });
