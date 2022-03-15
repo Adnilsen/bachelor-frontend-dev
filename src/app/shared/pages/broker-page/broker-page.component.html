@@ -13,7 +13,7 @@
           <mat-label>{{'broker-page.expansion-panel.label' | translate}}</mat-label>
           <mat-select [formControl]="brokerControl">
             <mat-option>{{'broker-page.expansion-panel.placeholder' | translate}}</mat-option>
-            <mat-option *ngFor='let broker of brokers' [value]='broker.name'>{{broker.name}}</mat-option>
+            <mat-option *ngFor='let broker of brokers' [value]='broker'>{{broker.name}}</mat-option>
           </mat-select>
           <mat-error *ngIf="brokerControl.invalid">{{'broker-page.expansion-panel.error' | translate}}</mat-error>
         </mat-form-field>
@@ -21,7 +21,7 @@
     </section>
     <section class='navigation-button-container'>
       <button mat-stroked-button color='warn' type=''>{{'broker-page.abort-btn' | translate}}</button>
-      <button mat-raised-button color="primary" type='submit' (click)='next()'>{{'broker-page.next-btn' | translate}}</button>
+      <button mat-raised-button class="nextBtn" color="primary" type='submit' (click)='next()'>{{'broker-page.next-btn' | translate}}</button>
     </section>
   </section>
 </body>
