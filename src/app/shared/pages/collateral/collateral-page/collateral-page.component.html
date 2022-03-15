@@ -52,6 +52,7 @@
               <div *ngIf='selectedType === "CONDOMINIUM"'>
                 <label style='font-weight: bold' class='selectorLabel'>{{'collateral-page.expansion-panel.content.condominium.address-title' | translate}}</label>
                 <mat-form-field appearance="fill">
+                  <mat-label>{{'collateral-page.expansion-panel.content.condominium.address-sub-title' | translate}}</mat-label>
                   <input matInput [formControl]="addressControl">
                   <mat-error *ngIf='addressControl.invalid'>{{'collateral-page.expansion-panel.content.condominium.address-error' | translate}}</mat-error>
                 </mat-form-field>
@@ -112,7 +113,7 @@
         <mat-error *ngIf="isClicked && coHabitant === undefined">{{'collateral-page.radio-button.co-applicant-error' | translate}}</mat-error>
       </form>
     </div>
-    <section>
+    <section class='navigation-button-container'>
       <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
       <button mat-stroked-button color='warn' (click)='cancel()'>Avbryt</button>
       <button mat-raised-button color="primary" form='coHabForm' type='submit'>Neste</button>
