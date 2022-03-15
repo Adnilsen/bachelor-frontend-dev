@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'frontend-application';
 
   // TODO fjern denne når hentes backend
-  case: {} = {
+  case = {
     caseId: 99,
     caseName: 'Finansieringsbevis',
   };
