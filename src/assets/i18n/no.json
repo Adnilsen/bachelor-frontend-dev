@@ -1,4 +1,13 @@
 {
+  "landing-page": {
+    "title": "Før du setter i gang...",
+    "information-container": {
+      "house": "Boliglån passer godt til deg som skal <b>låne til ny bolig</b> eller <b>pusse opp boligen</b>",
+      "loan": "Du kan få en låneramme på <b>inntil 85% av boligverdien</b>, så fremt du har <b>15% av lånerammen i egenkapital</b>",
+      "altinn": "Du trenger <b>BankID</b> for å søke, og du bør ha <b>god oversikt over økonomien din</b>, for eksempel hva du har i gjeld slik at vi kan vurdere søknaden din på riktig grunnlag"
+    },
+    "next-button": "Start søknad"
+  },
   "broker-page": {
     "title": "Boligen vi har kjøpt",
     "sub-title": "Hent kjøpskontrakt fra megler",

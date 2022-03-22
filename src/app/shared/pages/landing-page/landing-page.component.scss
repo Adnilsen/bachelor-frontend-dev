@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+section {
+  width: 60%;
+}
+
+@media (max-width: 1000px) {
+  section {
+    width: 100%;
+  }
+}
+
+img {
+  margin-right: 1.5rem;
+}
+
+.information-container {
+  display: flex;
+  align-content: space-between;
+}
+
+.navigation-button-container{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
