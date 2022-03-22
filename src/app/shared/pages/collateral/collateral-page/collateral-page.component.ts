@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router } from "@angular/router";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AltinnService } from '../../../../core/altinn/altinn.service';
+import { Collateral } from '../../../interfaces/collateral.interface';
 
 @Component({
   selector: 'app-collateral-page',
@@ -14,22 +16,17 @@ export class CollateralPageComponent implements OnInit {
 
   form!: FormGroup;
 
-  // TODO Fix validation
-  /*collateralControl = new FormControl('', Validators.required);
-
-  housingCoOperative = new FormControl('', Validators.required);
-
-   */
+  collateral!: Collateral;
 
   selectedType = 'HOUSING-CO-OPERATIVE';
 
   purhaseAmount = new FormControl('', Validators.required);
 
-  sharedDebt = new FormControl('', Validators.required);
+  sharedDebt = new FormControl('');
 
-  addressControl = new FormControl('', Validators.required);
+  addressControl = new FormControl('');
 
-  postalNumberControl = new FormControl('', Validators.required);
+  postalNumberControl = new FormControl('');
 
   coHabitantControl = new FormControl('', Validators.required);
 
@@ -42,44 +39,55 @@ export class CollateralPageComponent implements OnInit {
 
   coHabitantForm!: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private altinnService: AltinnService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.coHabitantForm = new FormGroup({
+      cohabitant: this.coHabitantControl,
+    });
     this.form = new FormGroup({
-      /*collateral: this.collateralControl,
-      coOperative: this.housingCoOperative,
-
-       */
       amount: this.purhaseAmount,
       debt: this.sharedDebt,
       address: this.addressControl,
       postalNumber: this.postalNumberControl,
     });
 
-    this.coHabitantForm = new FormGroup({
-      cohabitant: this.coHabitantControl,
-    });
-
     this.loading = false;
+
+    this.altinnService.getAltinnData(1, 2).subscribe((collateral) => {
+      if (collateral) {
+        this.collateral = collateral;
+        this.purhaseAmount.setValue(this.collateral.realEstate.purchaseAmount);
+        if (collateral.realEstate.type === 'Borettslag') {
+          this.selectedType = 'HOUSING-CO-OPERATIVE';
+          this.sharedDebt.setValidators(Validators.required);
+          this.sharedDebt.setValue(collateral.realEstate.sharedDebt);
+        } else {
+          this.selectedType = 'CONDOMINIUM';
+          this.postalNumberControl.setValidators(Validators.required);
+          this.postalNumberControl.setValue(collateral.realEstate.postalCode);
+
+          this.addressControl.setValidators(Validators.required);
+          this.addressControl.setValue(collateral.realEstate.address);
+        }
+      }
+    });
   }
 
-  selectedChange(selectedType: string) {
-
-  }
-
-  previous(){
+  previous() {
     this.router.navigate(['broker']);
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['your-loan-applications']);
   }
 
   isClicked: boolean = false;
 
   next() {
-    if(this.coHabitantForm.valid){
+    if (this.coHabitantForm.valid) {
       this.router.navigate(['collateral']);
+      console.log('jepp');
     }
     this.isClicked = true;
   }
