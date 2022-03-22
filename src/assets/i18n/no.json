@@ -68,5 +68,13 @@
       "no": "Nei",
       "co-applicant-error": "*Velg om du har medlåntaker"
     }
+  },
+  "loan-selection": {
+    "title": "Boliglån",
+    "sub-title": "Vi kan tilby deg følgende lån til <b>Betzy Kjelsbergs vei 15, 0486 Oslo</b>.",
+    "expantion-panel": {
+      "content": "Siden du skal kjøpe en bolig med <b>energimerke A eller B</b> får dere ekstra god rente med grønt boliglån. Dere får også tilbud om en ytterligere redusert rente fordi dere har en grønn miljøprofil."
+    },
+    "next-button": "Neste"
   }
 }
