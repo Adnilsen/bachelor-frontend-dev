@@ -1,0 +1,22 @@
+<body>
+  <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
+  <section *ngIf='!loading'>
+    <h1>{{'landing-page.title' | translate}}</h1>
+    <div class='information-container'>
+      <img src='../../../../assets/images/house.svg' alt=''>
+      <p [innerHTML]='"landing-page.information-container.house" | translate'></p>
+    </div>
+    <div class='information-container'>
+      <img src='../../../../assets/images/requirements.svg' alt=''>
+      <p [innerHTML]='"landing-page.information-container.loan" | translate'></p>
+    </div>
+    <div class='information-container'>
+      <img src='../../../../assets/images/bankID.svg' alt='' style='min-width: 3.2rem'>
+      <p [innerHTML]='"landing-page.information-container.altinn" | translate'></p>
+    </div>
+    <app-information-area [headerText]='"Legg merke til"' [mainText]='"Søknaden kan avbrytes når som helst, og din søknad blir ikke behandlet før du eventuelt godtar et tilbud, eller trykker “send søknad”"'></app-information-area>
+    <div class='navigation-button-container'>
+      <button mat-raised-button color="primary" (click)='next()'>{{'landing-page.next-button' | translate}}</button>
+    </div>
+  </section>
+</body>

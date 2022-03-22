@@ -25,10 +25,10 @@ $secondary-color: #EEF6FA;
 
 .text-container {
   margin-top: 1rem;
-
   p, strong {
     margin-left: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
+    max-width: 95%;
   }
 }
 
