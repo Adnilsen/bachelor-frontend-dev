@@ -18,7 +18,13 @@ section {
   color: black !important;
 }
 
-.selectorLabel {
+::ng-deep .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
+  color: black !important;
+
+}
+
+
+  .selectorLabel {
   margin-bottom: 0.2rem;
   font-weight: bold;
 }

@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.component';
 import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
 import { LandingPageComponent } from './shared/pages/landing-page/landing-page.component';
+import { LoanPageComponent } from './shared/pages/loan-page/loan-page.component';
 import { LoanSelectionComponent } from './shared/pages/loan-selection/loan-selection.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'broker', component: BrokerPageComponent },
   { path: 'collateral', component: CollateralPageComponent },
   { path: 'loan-selection', component: LoanSelectionComponent },
+  { path: 'loan', component: LoanPageComponent },
 ];
 
 @NgModule({

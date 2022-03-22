@@ -27,10 +27,12 @@ export class BrokerPageComponent implements OnInit {
 
     this.loading = false;
 
-    this.brokerService.getBrokers().subscribe((brokers) => {
+    this.brokers = this.brokerService.getMockBrokers();
+
+    /*this.brokerService.getBrokers().subscribe((brokers) => {
       this.loading = false;
       this.brokers = brokers;
-    });
+    });*/
   }
 
   next() {

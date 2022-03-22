@@ -10,12 +10,9 @@ describe('CollateralPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CollateralPageComponent ],
-      imports: [HttpClientTestingModule,
-      RouterTestingModule.withRoutes([]),
-        TranslateModule.forRoot()]
-    })
-    .compileComponents();
+      declarations: [CollateralPageComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), TranslateModule.forRoot()],
+    }).compileComponents();
   });
 
   beforeEach(() => {
