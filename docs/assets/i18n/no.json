@@ -1,0 +1,63 @@
+{
+  "broker-page": {
+    "title": "Boligen vi har kjøpt",
+    "information-title": "Hent kjøpskontrakt fra megler",
+    "information-content": "Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.",
+    "expansion-panel": {
+      "title": "Velg megler du vil hente kjøpskontrakt fra",
+      "label": "Megler",
+      "placeholder": "-- Ingen --",
+      "error": "*Velg megler"
+    },
+    "next-btn": "Neste",
+    "abort-btn": "Avbryt"
+    },
+  "collateral-page": {
+    "title": "Boligen vi har kjøpt",
+    "sub-title": "Sikkerhet i bolig",
+    "information-title": "Hvorfor må du stille sikkerhet i boligen?",
+    "information-content": "Du må stille med sikkerhet i boligen du har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.",
+    "expansion-panel": {
+      "title": "Adresse",
+      "error-title": "Vi kunne ikke hente kjøpskontrakten fra Altinn. Fyll ut feltene selv",
+      "content": {
+        "housing-type-title": "Type bolig",
+        "housing-type-sub-label": "Type bolig",
+        "purchase-amount-title": "Kjøpesum *",
+        "purchase-amount-sub-title": "Kjøpesum",
+        "purchase-amount-error": "*Fyll inn kjøpesum",
+        "housing-co-operative": {
+          "choose-co-operative": "Velg borettslag",
+          "choose-co-operative-sub-label": "Borettslag",
+          "unit-number": "Andelsnummer",
+          "unit-number-sub-label": "Fyll inn andelsnummer",
+          "shared-debt-title": "Fellesgjeld *",
+          "shared-debt-sub-title": "Fellesgjeld",
+          "shared-debt-error": "*Fyll inn fellesgjeld"
+        },
+        "condominium": {
+          "address-title": "Adresse *",
+          "address-sub-title": "Fyll inn adresse",
+          "address-error": "*Fyll inn adresse",
+          "postal-code-title": "Postnummer *",
+          "postal-code-sub-title": "Postnummer",
+          "postal-code-error": "Fyll inn postnummer",
+          "cadastral-number-title": "Gårdsnummer",
+          "cadastral-number-sub-title": "Gårdsnummer",
+          "title-number-title": "Bruksnummer",
+          "title-number-sub-title": "Bruksnummer",
+          "section-number-title": "Seksjonsnummer",
+          "section-number-sub-title": "Seksjonsnummer",
+          "lease-number-title": "Festenummer",
+          "lease-number-sub-title": "Festenummer"
+        }
+      }
+    },
+    "radio-button":{
+      "title": "Har kjøper av boligen en ektefelle som skal bo i boligen, uten å eie den? *",
+      "yes": "Ja",
+      "no": "Nei",
+      "co-applicant-error": "*Velg om du har medlåntaker"
+    }
+  }
+}
