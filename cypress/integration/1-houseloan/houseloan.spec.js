@@ -54,10 +54,6 @@ describe('collateral page', () => {
     cy.checkA11y(null, A11Y_OPTIONS);
   });
 
-  it('has the correct sub-title', () => {
-    cy.get('h2').contains('Sikkerhet i bolig');
-  });
-
   it('see purchase contract', () => {
     cy.get('mat-expansion-panel').click();
   });
