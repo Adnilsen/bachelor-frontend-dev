@@ -1,8 +1,7 @@
 {
   "broker-page": {
     "title": "Boligen vi har kjøpt",
-    "sub-title": "Hent kjøpskontrakt fra megler",
-    "information-title": "Hvorfor velge megler?",
+    "information-title": "Hent kjøpskontrakt fra megler",
     "information-content": "Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.",
     "expansion-panel": {
       "title": "Velg megler du vil hente kjøpskontrakt fra",
@@ -17,17 +16,19 @@
     "title": "Boligen vi har kjøpt",
     "sub-title": "Sikkerhet i bolig",
     "information-title": "Hvorfor må du stille sikkerhet i boligen?",
-    "information-content": "Dere må stille med sikkerhet i boligen dere har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.",
+    "information-content": "Du må stille med sikkerhet i boligen du har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.",
     "expansion-panel": {
       "title": "Adresse",
-      "sub-title": "Akersgata 2 <br>0465 Oslo",
+      "error-title": "Vi kunne ikke hente kjøpskontrakten fra Altinn. Fyll ut feltene selv",
       "content": {
         "housing-type-title": "Type bolig",
         "housing-type-sub-label": "Type bolig",
-        "purchase-amount-title": "Kjøpesum",
+        "purchase-amount-title": "Kjøpesum *",
         "purchase-amount-sub-title": "Kjøpesum",
         "purchase-amount-error": "*Fyll inn kjøpesum",
         "housing-co-operative": {
+          "choose-co-operative": "Velg borettslag",
+          "choose-co-operative-sub-label": "Borettslag",
           "unit-number": "Andelsnummer",
           "unit-number-sub-label": "Fyll inn andelsnummer",
           "shared-debt-title": "Fellesgjeld *",
@@ -42,7 +43,7 @@
           "postal-code-sub-title": "Postnummer",
           "postal-code-error": "Fyll inn postnummer",
           "cadastral-number-title": "Gårdsnummer",
-          "cadastral-number-sub-title": "Fyll inn postnummer",
+          "cadastral-number-sub-title": "Gårdsnummer",
           "title-number-title": "Bruksnummer",
           "title-number-sub-title": "Bruksnummer",
           "section-number-title": "Seksjonsnummer",
