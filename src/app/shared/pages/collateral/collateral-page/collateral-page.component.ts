@@ -86,7 +86,7 @@ export class CollateralPageComponent implements OnInit {
 
   next() {
     if (this.coHabitantForm.valid) {
-      this.router.navigate(['collateral']);
+      this.router.navigate(['loan-selection']);
     }
     this.isClicked = true;
   }
