@@ -22,6 +22,6 @@ export class LoanSelectionComponent {
   }
 
   next() {
-    console.log('Neste');
+    this.router.navigate(['loan']);
   }
 }

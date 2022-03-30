@@ -11,4 +11,15 @@ export class BrokerService {
   getBrokers() {
     return this.httpClient.get<Broker[]>('http://localhost:8080/brokers');
   }
+
+  getMockBrokers() {
+    return [{
+      name: 'Nordvik',
+      brokerId: 1,
+    },
+      {
+        name: 'DnB',
+        brokerId: 2,
+      },] as Broker[]
+  }
 }

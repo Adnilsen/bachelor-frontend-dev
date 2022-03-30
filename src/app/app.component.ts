@@ -9,11 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'frontend-application';
 
-  // TODO fjern denne når hentes backend
-  case = {
-    caseId: 99,
-    caseName: 'Finansieringsbevis',
-  };
 
   constructor(translate: TranslateService) {
     translate.addLangs(['no']);

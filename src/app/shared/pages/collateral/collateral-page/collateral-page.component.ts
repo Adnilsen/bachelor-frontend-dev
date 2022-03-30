@@ -53,8 +53,25 @@ export class CollateralPageComponent implements OnInit {
     });
 
     this.loading = false;
+    // TODO slett etter gjennomgang frontend
+    this.collateral = this.altinnService.getMockAltinnData();
+    this.purhaseAmount.setValue(this.collateral.realEstate.purchaseAmount);
+    this.purhaseAmount.disable();
+    if (this.collateral.realEstate.type === 'Borettslag') {
+      this.selectedType = 'HOUSING-CO-OPERATIVE';
+      this.sharedDebt.setValidators(Validators.required);
+      this.sharedDebt.setValue(this.collateral.realEstate.sharedDebt);
+      this.sharedDebt.disable();
+    } else {
+      this.selectedType = 'CONDOMINIUM';
+      this.postalNumberControl.setValidators(Validators.required);
+      this.postalNumberControl.setValue(this.collateral.realEstate.postalCode);
 
-    this.altinnService.getAltinnData(1, 2).subscribe((collateral) => {
+      this.addressControl.setValidators(Validators.required);
+      this.addressControl.setValue(this.collateral.realEstate.address);
+    }
+
+    /*this.altinnService.getAltinnData(1, 2).subscribe((collateral) => {
       if (collateral) {
         this.collateral = collateral;
         this.purhaseAmount.setValue(this.collateral.realEstate.purchaseAmount);
@@ -71,7 +88,7 @@ export class CollateralPageComponent implements OnInit {
           this.addressControl.setValue(collateral.realEstate.address);
         }
       }
-    });
+    });*/
   }
 
   previous() {

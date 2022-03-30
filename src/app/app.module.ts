@@ -16,24 +16,40 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
-import { NgxMaskModule } from 'ngx-mask';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
 import { InformationAreaComponent } from './shared/components/information-area/information-area.component';
 import { LandingPageComponent } from './shared/pages/landing-page/landing-page.component';
+import { LoanPageComponent } from './shared/pages/loan-page/loan-page.component';
+import { MatNativeDateModule } from '@angular/material/core';
 import { LoanSelectionComponent } from './shared/pages/loan-selection/loan-selection.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+// @ts-ignore
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, BrokerPageComponent, CollateralPageComponent, InformationAreaComponent, LandingPageComponent, LoanSelectionComponent],
+  declarations: [
+    AppComponent,
+    ToolbarComponent,
+    BrokerPageComponent,
+    CollateralPageComponent,
+    InformationAreaComponent,
+    LandingPageComponent,
+    LoanSelectionComponent,
+    LoanPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,6 +67,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatExpansionModule,
     MatChipsModule,
     MatInputModule,
+    NgxSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgxMaskModule.forRoot(),
     MatRadioModule,
     TranslateModule.forRoot({
@@ -60,8 +79,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    FormsModule,
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

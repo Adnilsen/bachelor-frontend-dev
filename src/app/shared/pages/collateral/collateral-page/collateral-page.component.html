@@ -39,21 +39,21 @@
                 <label class='selectorLabel'>{{'collateral-page.expansion-panel.content.housing-co-operative.choose-co-operative' | translate}}</label>
                 <mat-form-field appearance="fill">
                   <mat-label>{{'collateral-page.expansion-panel.content.housing-co-operative.choose-co-operative-sub-label' | translate}}</mat-label>
-                  <input matInput value='{{collateral ? collateral.realEstate.cooperativeName : ""}}'>
+                  <input matInput value='{{collateral ? collateral.realEstate.cooperativeName : ""}}' [disabled]='collateral !== undefined'>
                 </mat-form-field>
               </div>
               <div class='formFieldContainer'>
                 <label class='selectorLabel'>{{'collateral-page.expansion-panel.content.housing-co-operative.unit-number' | translate}}</label>
                 <mat-form-field appearance="fill">
                   <mat-label>{{'collateral-page.expansion-panel.content.housing-co-operative.unit-number-sub-label' | translate}}</mat-label>
-                  <input matInput value='{{collateral ? collateral.realEstate.unitNumber : ""}}'>
+                  <input matInput value='{{collateral ? collateral.realEstate.unitNumber : ""}}' [disabled]='collateral !== undefined'>
                 </mat-form-field>
               </div>
               <div class='formFieldContainer'>
                 <label class='selectorLabel'>{{'collateral-page.expansion-panel.content.purchase-amount-title' | translate}}</label>
                 <mat-form-field appearance="fill">
                   <mat-label>{{'collateral-page.expansion-panel.content.purchase-amount-sub-title' | translate}}</mat-label>
-                  <input matInput [formControl]="purhaseAmount" [mask]="'separator'">
+                  <input matInput [formControl]="purhaseAmount" [mask]="'separator'" [disabled]='collateral !== undefined'>
                   <mat-error *ngIf="purhaseAmount.invalid">{{'collateral-page.expansion-panel.content.purchase-amount-error' | translate}}</mat-error>
                 </mat-form-field>
               </div>
@@ -61,7 +61,7 @@
                 <label class='selectorLabel'>{{'collateral-page.expansion-panel.content.housing-co-operative.shared-debt-title' | translate}}</label>
                 <mat-form-field appearance="fill">
                   <mat-label>{{'collateral-page.expansion-panel.content.housing-co-operative.shared-debt-sub-title' | translate}}</mat-label>
-                  <input matInput [formControl]="sharedDebt" [mask]="'separator'">
+                  <input matInput [formControl]="sharedDebt" [mask]="'separator'" [disabled]='collateral !== undefined'>
                   <mat-error *ngIf="sharedDebt.invalid">{{'collateral-page.expansion-panel.content.housing-co-operative.shared-debt-error' | translate}}</mat-error>
                 </mat-form-field>
               </div>

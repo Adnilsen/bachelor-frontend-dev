@@ -76,5 +76,11 @@
       "content": "Siden du skal kjøpe en bolig med <b>energimerke A eller B</b> får dere ekstra god rente med grønt boliglån. Dere får også tilbud om en ytterligere redusert rente fordi dere har en grønn miljøprofil."
     },
     "next-button": "Neste"
+  },
+  "loan-page": {
+    "monthly-payment": "<b>Å betale hver måned:</b> {{monthlyPayment}} kr",
+    "price-example": {
+      "result": "{{value}} kr i lån over {{loanDuration}} år vil koste deg omtrent {{cost}} kr"
+    }
   }
 }

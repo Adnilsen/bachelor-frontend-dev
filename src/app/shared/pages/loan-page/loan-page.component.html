@@ -1,0 +1,132 @@
+<body class="loanPage">
+  <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
+  <section *ngIf='!loading'>
+    <div>
+      <h1>{{'collateral-page.title' | translate}}</h1>
+      <p>Vi kan tilby deg følgende lån til <strong>Betzy Kjelsbergs vei 15, 0486 Oslo</strong>. For å dekke kjøp av boligen med omkostninger trenger dere totalt <b>2 000 000 kr</b>.</p>
+    </div>
+    <div style='margin-bottom: 2rem' class='sliderContainer'>
+      <div style='display: flex; flex-direction: column; width: 50%'>
+        <label class='selectorLabel'>Lånebeløp</label>
+        <mat-form-field appearance="fill">
+          <input matInput [(ngModel)]='value' [mask]='"separator"' (ngModelChange)='inputValueChanged($event)' [maxLength]="9">
+        </mat-form-field>
+      </div>
+      <mat-slider [max]='maxValue' [min]='minValue' [step]='sliderStep' [(ngModel)]="value" (input)='sliderValueChanged($event)'></mat-slider>
+    </div>
+    <div style='margin-bottom: 2rem' class='sliderContainer'>
+      <div style='display: flex; flex-direction: column; width: 50%'>
+        <label class='selectorLabel'>Benyttet egenkapital</label>
+        <mat-form-field appearance="fill">
+          <input matInput [(ngModel)]='equityToUse' [max]='maxValue' [mask]='"separator"' (ngModelChange)='inputEquityValueChanged($event)' [maxLength]="9">
+        </mat-form-field>
+      </div>
+    </div>
+    <div style='margin-bottom: 2rem' class='sliderContainer'>
+      <div style='display: flex; flex-direction: column; width: 50%;'>
+        <label class='selectorLabel'>Nedbetalingstid i år</label>
+        <mat-form-field appearance="fill">
+          <input matInput [(ngModel)]='loanDuration' [maxLength]="2" (ngModelChange)='inputDurationChanged($event)'>
+        </mat-form-field>
+      </div>
+      <mat-slider [max]='30' [min]='1' [step]='1' [(ngModel)]="loanDuration" (input)='sliderDurationChanged($event)'></mat-slider>
+    </div>
+    <div style='display: flex; flex-direction: column; width: 50%;'>
+      <form [formGroup]='form' id='form' (ngSubmit)="next()">
+        <div class='inputContainer'>
+          <label class='selectorLabel'>Konto for utbetaling</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="accountPaymentController" required placeholder='Kontonummer'>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let account of accountNumbers" [value]="account">
+                {{account}}
+              </mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg et kontonummer</mat-error>
+          </mat-form-field>
+        </div>
+        <div class='inputContainer'>
+          <label class='selectorLabel'>Konto for nedbetaling</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="accountRepaymentController" required placeholder='Kontonummer'>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let account of accountNumbers" [value]="account">
+                {{account}}
+              </mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg et kontonummer</mat-error>
+          </mat-form-field>
+        </div>
+        <div class='inputContainer'>
+          <label class='selectorLabel'>Forfallsdato(dag i måneden)</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="dateSelectController" required placeholder='Dato'>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let day of daysOfMonth" [value]="day">
+                {{day}}
+              </mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg en dato</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div>
+      <div style='width: 100%; background-color: #F3F5F6; display: flex; align-content: center; height: 4rem'>
+        <div>
+          <img src='./assets/images/house.svg' alt='' style='margin: 0.7rem 1rem 0.7rem 0.5rem'>
+        </div>
+        <div style='display: flex; align-content: center; margin-top: 0.6rem;'>
+          <p [innerHTML]='"loan-page.monthly-payment" | translate: {
+          monthlyPayment: monthlyLoanPayment.toFixed(0)
+          }'></p>
+          <p> </p>
+        </div>
+      </div>
+    </div>
+    <div style='margin-top: 2rem;'>
+      <div class='outer-container'>
+        <div class='left-container'></div>
+        <div class='right-container'>
+          <img src='../../../../assets/images/exclamation-mark.svg' alt=''>
+          <div class='text-container'>
+            <div class='text-splitter-header'>
+              <strong><p>Priseksempel</p></strong>
+            </div>
+            <div class='text-splitter'>
+              <div style='flex-basis: 70%; font-weight: bold'>Engangsomkostninger</div>
+              <div>220 kr</div>
+            </div>
+            <div class='text-splitter'>
+              <div style='flex-basis: 70%; font-weight: bold'>Månedlig gebyr</div>
+              <div>1000 kr</div>
+            </div>
+            <div class='text-splitter'>
+              <div style='flex-basis: 70%; font-weight: bold'>Nominell rente</div>
+              <div>{{nominalInterestRate}}%</div>
+            </div>
+            <div class='text-splitter'>
+              <div style='flex-basis: 70%; font-weight: bold'>Estimert effektiv rente</div>
+              <div>{{effectiveInterestRate}}%</div>
+            </div>
+            <div class='text-splitter'>
+              <p [innerHTML]="'loan-page.price-example.result' | translate : {
+                value: value,
+                loanDuration: loanDuration,
+                cost: ((totalCost - value).toFixed(0))
+              }">
+            </div>
+            <div>
+              <p style='font-weight: bold; margin-left: 1rem'>Totalbeløp: {{ (monthlyLoanPayment * 12 * loanDuration).toFixed(0)}} kr</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class='navigation-button-container'>
+      <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
+      <button mat-stroked-button color='warn' (click)='cancel()'>Avbryt</button>
+      <button mat-raised-button color="primary" form='form' type='submit'>Send søknad</button>
+    </section>
+  </section>
+</body>

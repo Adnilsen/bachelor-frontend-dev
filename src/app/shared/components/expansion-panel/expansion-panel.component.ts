@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Case } from '../../interfaces/case.interface';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-expansion-panel',
@@ -12,7 +13,7 @@ export class ExpansionPanelComponent implements OnInit {
 
   panelOpenState = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log(this.cases);
@@ -52,5 +53,9 @@ export class ExpansionPanelComponent implements OnInit {
       default:
         return undefined;
     }
+  }
+
+  next() {
+    this.router.navigate(['landing']);
   }
 }

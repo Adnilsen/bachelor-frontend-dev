@@ -13,7 +13,7 @@
     <p>Lånetaker: {{ curCase.customer.customerFirstName + ' ' + curCase.customer.customerLastName }}</p>
     <p>Påbegynt: {{ curCase.date | date: 'dd:MM.YY kl. HH:mm' }}</p>
     <mat-action-row>
-      <button mat-raised-button color="primary">NEXT STEP</button>
+      <button mat-raised-button color="primary" (click)="next()">NEXT STEP</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
