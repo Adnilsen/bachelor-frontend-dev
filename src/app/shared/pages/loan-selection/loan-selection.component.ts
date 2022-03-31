@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-loan-selection',
   templateUrl: './loan-selection.component.html',
   styleUrls: ['./loan-selection.component.scss'],
 })
-export class LoanSelectionComponent {
+export class LoanSelectionComponent{
   loading!: boolean;
 
   panelOpenState = true;
 
   constructor(private router: Router) {}
+
 
   previous() {
     this.router.navigate(['collateral']);
@@ -22,6 +23,8 @@ export class LoanSelectionComponent {
   }
 
   next() {
-    this.router.navigate(['loan']);
+    this.router.navigateByUrl('loan', { state: { requiredLoanAmount: history.state.requiredLoanAmount}})
   }
+
+
 }

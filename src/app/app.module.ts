@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatSliderModule } from '@angular/material/slider';
-import { YourLoanApplicationsModule } from './your-loan-applications/your-loan-applications.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -31,6 +30,11 @@ import { LandingPageComponent } from './shared/pages/landing-page/landing-page.c
 import { LoanPageComponent } from './shared/pages/loan-page/loan-page.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoanSelectionComponent } from './shared/pages/loan-selection/loan-selection.component';
+import { ResultComponent } from './shared/pages/result/result.component';
+import { YourLoanApplicationComponent } from './shared/pages/your-loan-application/your-loan-application.component';
+import {ExpansionPanelComponent} from "./shared/components/expansion-panel/expansion-panel.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatMenuModule} from "@angular/material/menu";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +46,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     AppComponent,
+    ExpansionPanelComponent,
     ToolbarComponent,
     BrokerPageComponent,
     CollateralPageComponent,
@@ -49,6 +54,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     LandingPageComponent,
     LoanSelectionComponent,
     LoanPageComponent,
+    ResultComponent,
+    YourLoanApplicationComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatButtonModule,
     HttpClientModule,
     MatSliderModule,
-    YourLoanApplicationsModule,
+    MatExpansionModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -70,6 +77,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
+    MatMenuModule,
     NgxMaskModule.forRoot(),
     MatRadioModule,
     TranslateModule.forRoot({

@@ -17,7 +17,7 @@ export class CaseService {
   getMockCases() {
     return [{
       caseId: 133,
-      status: "Finished",
+      status: "Klar til å fortsette",
       amount: 2_500_000,
       finished: true,
       date: new Date(),
@@ -33,6 +33,25 @@ export class CaseService {
         customerLastName: "Normann",
         id: 123,
       } as Customer
-    }] as Case[]
+    },
+      {
+        caseId: 133,
+        status: "Klar til å fortsette",
+        amount: 2_500_000,
+        finished: true,
+        date: new Date(),
+        product: {
+          type: "Finansieringsbevis bolig",
+          name: "Finansieringsbevis bolig",
+          description: "Bra finbev",
+          id: 1
+        } as Product,
+        customer: {
+          role: "owner",
+          customerFirstName: "Kari",
+          customerLastName: "Normann",
+          id: 123,
+        } as Customer
+      }] as Case[]
   }
 }

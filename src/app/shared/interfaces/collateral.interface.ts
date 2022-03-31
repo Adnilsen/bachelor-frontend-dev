@@ -14,7 +14,7 @@ export interface RealEstate {
   unitNumber?: number;
   cooperativeName?: string;
   sharedDebt?: number;
-  postalCode?: number;
+  postalCode?: string;
   cadastralNumber?: number;
   titleNumber?: number;
   sectionNumber?: number;

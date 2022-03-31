@@ -1,6 +1,6 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let curCase of cases" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let curCase of cases; let first = first" [expanded]="first" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header [collapsedHeight]="'4rem'">
       <mat-panel-title>
         {{ curCase.product.type }}
       </mat-panel-title>
@@ -13,7 +13,7 @@
     <p>Lånetaker: {{ curCase.customer.customerFirstName + ' ' + curCase.customer.customerLastName }}</p>
     <p>Påbegynt: {{ curCase.date | date: 'dd:MM.YY kl. HH:mm' }}</p>
     <mat-action-row>
-      <button mat-raised-button color="primary" (click)="next()">NEXT STEP</button>
+      <button mat-raised-button color="primary" (click)="next()">Søk boliglån</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
