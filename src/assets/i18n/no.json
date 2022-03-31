@@ -4,12 +4,12 @@
     "information-container": {
       "house": "Boliglån passer godt til deg som skal <b>låne til ny bolig</b> eller <b>pusse opp boligen</b>",
       "loan": "Du kan få en låneramme på <b>inntil 85% av boligverdien</b>, så fremt du har <b>15% av lånerammen i egenkapital</b>",
-      "altinn": "Du trenger <b>BankID</b> for å søke, og du bør ha <b>god oversikt over økonomien din</b>, for eksempel hva du har i gjeld slik at vi kan vurdere søknaden din på riktig grunnlag"
+      "altinn": "Du trenger <b>BankID</b> for å søke, og du bør ha <b>god oversikt over økonomien din</b>, som hvor høyt lån du kan betjene."
     },
     "next-button": "Start søknad"
   },
   "broker-page": {
-    "title": "Boligen vi har kjøpt",
+    "title": "Boligen jeg har kjøpt",
     "information-title": "Hent kjøpskontrakt fra megler",
     "information-content": "Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.",
     "expansion-panel": {
@@ -22,10 +22,10 @@
     "abort-btn": "Avbryt"
     },
   "collateral-page": {
-    "title": "Boligen vi har kjøpt",
+    "title": "Boligen jeg har kjøpt",
     "sub-title": "Sikkerhet i bolig",
     "information-title": "Hvorfor må du stille sikkerhet i boligen?",
-    "information-content": "Du må stille med sikkerhet i boligen du har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier.",
+    "information-content": "Du må stille med sikkerhet i boligen du har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier. <br><br>Informasjonen om boligen er automatisk uthentet fra Altinn.",
     "expansion-panel": {
       "title": "Adresse",
       "error-title": "Vi kunne ikke hente kjøpskontrakten fra Altinn. Fyll ut feltene selv",
@@ -78,6 +78,7 @@
     "next-button": "Neste"
   },
   "loan-page": {
+    "used-equity": "<b>Benyttet egenkapital:</b> {{equityUsed}} kr",
     "monthly-payment": "<b>Å betale hver måned:</b> {{monthlyPayment}} kr",
     "price-example": {
       "result": "{{value}} kr i lån over {{loanDuration}} år vil koste deg omtrent {{cost}} kr"

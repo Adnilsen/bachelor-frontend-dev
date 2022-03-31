@@ -11,7 +11,7 @@ export class ExpansionPanelComponent implements OnInit {
   // @ts-ignore
   @Input() cases: Case[];
 
-  panelOpenState = false;
+  panelOpenState = true;
 
   constructor(private router: Router) {}
 

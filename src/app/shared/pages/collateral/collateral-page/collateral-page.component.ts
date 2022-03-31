@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AltinnService } from '../../../../core/altinn/altinn.service';
 import { Collateral } from '../../../interfaces/collateral.interface';
+import { PostCodeService } from "../../../../core/postCode/post-code.service";
+import { PostCode } from "../../../interfaces/postcode.interface";
 
 @Component({
   selector: 'app-collateral-page',
@@ -12,7 +14,7 @@ import { Collateral } from '../../../interfaces/collateral.interface';
 export class CollateralPageComponent implements OnInit {
   loading!: boolean;
 
-  panelOpenState = false;
+  panelOpenState = true;
 
   form!: FormGroup;
 
@@ -30,7 +32,17 @@ export class CollateralPageComponent implements OnInit {
 
   coHabitantControl = new FormControl('', Validators.required);
 
+  requiredLoanAmountController = new FormControl('', Validators.required);
+
   coHabitant!: boolean;
+
+  postName!: PostCode;
+
+  requiredLoanAmount!: string | null;
+
+  loanAmountHelp!: boolean;
+
+  maxLoanAmount = 3_000_000;
 
   collateralTypes = [
     { type: 'HOUSING-CO-OPERATIVE', value: 'Borettslag' },
@@ -39,18 +51,18 @@ export class CollateralPageComponent implements OnInit {
 
   coHabitantForm!: FormGroup;
 
-  constructor(private router: Router, private altinnService: AltinnService) {}
+  constructor(private router: Router, private altinnService: AltinnService, private postCodeService: PostCodeService) {}
 
   ngOnInit() {
     this.coHabitantForm = new FormGroup({
       cohabitant: this.coHabitantControl,
     });
     this.form = new FormGroup({
-      amount: this.purhaseAmount,
-      debt: this.sharedDebt,
-      address: this.addressControl,
-      postalNumber: this.postalNumberControl,
+      requiredLoanAmount: this.requiredLoanAmountController
     });
+
+    this.requiredLoanAmountController.setValue(localStorage.getItem('requiredLoanAmount'));
+    this.requiredLoanAmount = localStorage.getItem('requiredLoanAmount');
 
     this.loading = false;
     // TODO slett etter gjennomgang frontend
@@ -70,6 +82,10 @@ export class CollateralPageComponent implements OnInit {
       this.addressControl.setValidators(Validators.required);
       this.addressControl.setValue(this.collateral.realEstate.address);
     }
+
+    this.postCodeService.getPostName(this.collateral.realEstate.postalCode).subscribe((postName) => {
+      this.postName = postName
+    });
 
     /*this.altinnService.getAltinnData(1, 2).subscribe((collateral) => {
       if (collateral) {
@@ -91,6 +107,14 @@ export class CollateralPageComponent implements OnInit {
     });*/
   }
 
+  inputLoanAmountChanged(value: number) {
+
+  }
+
+  displayHelp() {
+    this.loanAmountHelp = !this.loanAmountHelp;
+  }
+
   previous() {
     this.router.navigate(['broker']);
   }
@@ -102,7 +126,8 @@ export class CollateralPageComponent implements OnInit {
   isClicked: boolean = false;
 
   next() {
-    if (this.coHabitantForm.valid) {
+    if (this.coHabitantForm.valid && this.form.valid) {
+      localStorage.setItem('requiredLoanAmount', String(this.requiredLoanAmount));
       this.router.navigate(['loan-selection']);
     }
     this.isClicked = true;

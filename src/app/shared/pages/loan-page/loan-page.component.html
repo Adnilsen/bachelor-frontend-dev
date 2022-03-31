@@ -3,7 +3,8 @@
   <section *ngIf='!loading'>
     <div>
       <h1>{{'collateral-page.title' | translate}}</h1>
-      <p>Vi kan tilby deg følgende lån til <strong>Betzy Kjelsbergs vei 15, 0486 Oslo</strong>. For å dekke kjøp av boligen med omkostninger trenger dere totalt <b>2 000 000 kr</b>.</p>
+      <p>Vi kan tilby deg følgende lån til <strong>Betzy Kjelsbergs vei 15, 0486 Oslo</strong>. For å dekke kjøp av boligen med omkostninger trenger dere totalt <b>
+        {{ realEstateValue | mask: 'separator.0'}} kr</b>.</p>
     </div>
     <div style='margin-bottom: 2rem' class='sliderContainer'>
       <div style='display: flex; flex-direction: column; width: 50%'>
@@ -15,11 +16,13 @@
       <mat-slider [max]='maxValue' [min]='minValue' [step]='sliderStep' [(ngModel)]="value" (input)='sliderValueChanged($event)'></mat-slider>
     </div>
     <div style='margin-bottom: 2rem' class='sliderContainer'>
-      <div style='display: flex; flex-direction: column; width: 50%'>
-        <label class='selectorLabel'>Benyttet egenkapital</label>
-        <mat-form-field appearance="fill">
-          <input matInput [(ngModel)]='equityToUse' [max]='maxValue' [mask]='"separator"' (ngModelChange)='inputEquityValueChanged($event)' [maxLength]="9">
-        </mat-form-field>
+      <div style='width: 100%; background-color: #F3F5F6; display: flex; align-content: center; height: 4rem'>
+        <div style='display: flex; align-content: center; margin-top: 0.6rem;'>
+          <p [innerHTML]='"loan-page.used-equity" | translate: {
+            equityUsed: equityToUse | mask: "separator.0"
+          }'></p>
+          <p> </p>
+        </div>
       </div>
     </div>
     <div style='margin-bottom: 2rem' class='sliderContainer'>
@@ -78,7 +81,7 @@
         </div>
         <div style='display: flex; align-content: center; margin-top: 0.6rem;'>
           <p [innerHTML]='"loan-page.monthly-payment" | translate: {
-          monthlyPayment: monthlyLoanPayment.toFixed(0)
+          monthlyPayment: monthlyLoanPayment | mask: "separator.0"
           }'></p>
           <p> </p>
         </div>
@@ -95,11 +98,11 @@
             </div>
             <div class='text-splitter'>
               <div style='flex-basis: 70%; font-weight: bold'>Engangsomkostninger</div>
-              <div>220 kr</div>
+              <div>2000 kr</div>
             </div>
             <div class='text-splitter'>
               <div style='flex-basis: 70%; font-weight: bold'>Månedlig gebyr</div>
-              <div>1000 kr</div>
+              <div>50 kr</div>
             </div>
             <div class='text-splitter'>
               <div style='flex-basis: 70%; font-weight: bold'>Nominell rente</div>
@@ -111,13 +114,10 @@
             </div>
             <div class='text-splitter'>
               <p [innerHTML]="'loan-page.price-example.result' | translate : {
-                value: value,
+                value: value | mask: 'separator.0',
                 loanDuration: loanDuration,
-                cost: ((totalCost - value).toFixed(0))
+                cost: (monthlyLoanPayment * 12 * loanDuration) | mask: 'separator.0'
               }">
-            </div>
-            <div>
-              <p style='font-weight: bold; margin-left: 1rem'>Totalbeløp: {{ (monthlyLoanPayment * 12 * loanDuration).toFixed(0)}} kr</p>
             </div>
           </div>
         </div>
