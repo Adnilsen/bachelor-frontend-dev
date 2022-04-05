@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Collateral} from "../../interfaces/collateral.interface";
+import {AltinnService} from "../../../core/altinn/altinn.service";
 
 @Component({
   selector: 'app-loan-page',
@@ -11,6 +13,8 @@ export class LoanPageComponent implements OnInit {
   form!: FormGroup;
 
   loading!: boolean;
+
+  collateral!: Collateral;
 
   value = 0;
 
@@ -36,9 +40,9 @@ export class LoanPageComponent implements OnInit {
 
   dateSelectController = new FormControl('', Validators.required);
 
-  daysOfMonth = [1, 2, 3, 4, 5, 6, 7];
+  daysOfMonth = [3, 6, 10, 15, 23, 26, 30];
 
-  accountNumbers = [1333556699636, 6778222995646];
+  accountNumbers = [{accountNumber: "1333556699636", accountName: "Lønnskonto"},{accountNumber: "6778222995646", accountName: "Sparekonto"}];
 
   nominalInterestRate = 2;
 
@@ -48,7 +52,7 @@ export class LoanPageComponent implements OnInit {
 
   informationContentText!: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private altinnService: AltinnService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -56,6 +60,8 @@ export class LoanPageComponent implements OnInit {
       payment: this.accountPaymentController,
       repayment: this.accountRepaymentController,
     });
+
+    this.collateral = this.altinnService.getMockAltinnData();
 
     this.maxValue = Number(localStorage.getItem('requiredLoanAmount'));
     this.value = this.maxValue;

@@ -4,6 +4,7 @@ import { LoanPageComponent } from './loan-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import {NgxMaskModule} from "ngx-mask";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('LoanPageComponent', () => {
   let component: LoanPageComponent;
@@ -12,7 +13,7 @@ describe('LoanPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoanPageComponent],
-      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgxMaskModule.forRoot()],
+      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgxMaskModule.forRoot(), HttpClientTestingModule],
     }).compileComponents();
   });
 

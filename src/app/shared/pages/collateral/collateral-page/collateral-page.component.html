@@ -134,9 +134,9 @@
     <div style='display: flex; flex-direction: column; width: 100%'>
       <div style="margin-bottom: 0.2rem; display: flex; flex-direction: row; align-content: center;">
         <label class='selectorLabel'>Ønsket lånebeløp</label>
-        <button mat-mini-fab color="primary" (click)="displayHelp()">?</button>
+        <!--button mat-mini-fab color="primary" (click)="displayHelp()">?</button-->
       </div>
-      <label class="sublabel" style="width: 70%" *ngIf="loanAmountHelp">Ønsket lånebeløp kan ikke overstige kjøpsverdi og du må ha 15% egenkapital av lånesummen</label>
+      <label class="sublabel" style="width: 70%;" *ngIf="loanAmountHelp">Ønsket lånebeløp kan ikke overstige 85% av kjøpsverdi. <br>Maks lånebeløp er:</label>
       <div style="width: 50%">
         <mat-form-field appearance="fill">
           <input matInput [(ngModel)]='requiredLoanAmount' placeholder="0" [mask]='"separator"' (ngModelChange)='inputLoanAmountChanged($event)' [formControl]="requiredLoanAmountController">

@@ -108,7 +108,10 @@ export class CollateralPageComponent implements OnInit {
   }
 
   inputLoanAmountChanged(value: number) {
-
+    if (value > this.collateral.realEstate.purchaseAmount * 0.85) {
+      this.loanAmountHelp = true;
+      this.form.get('requiredLoanAmount')?.setValue(this.collateral.realEstate.purchaseAmount * 0.85)
+    }
   }
 
   displayHelp() {
