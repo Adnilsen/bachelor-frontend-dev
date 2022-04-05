@@ -12,7 +12,9 @@ export class LoanPageComponent implements OnInit {
 
   loading!: boolean;
 
-  value = 2000000;
+  value = 0;
+
+  realEstateValue = 3000000;
 
   equityToUse = 50000;
 
@@ -55,6 +57,8 @@ export class LoanPageComponent implements OnInit {
       repayment: this.accountRepaymentController,
     });
 
+    this.maxValue = Number(localStorage.getItem('requiredLoanAmount'));
+    this.value = this.maxValue;
     this.calculateLoan();
   }
 
@@ -77,16 +81,11 @@ export class LoanPageComponent implements OnInit {
     this.calculateLoan();
   }
 
-  inputEquityValueChanged(value: number) {
-    this.equityToUse = value;
-    this.calculateLoan();
-  }
-
   inputDurationChanged(value: number) {
     if (value <= 30) {
       this.loanDuration = value;
-    } else {
-      this.loanDuration = 30;
+    } else if (value < 1) {
+      this.loanDuration = 1;
     }
     this.calculateLoan();
   }
@@ -95,6 +94,8 @@ export class LoanPageComponent implements OnInit {
     const interestRate = this.effectiveInterestRate / 100 / 12;
     this.monthlyLoanPayment = (interestRate / (1 - (1 + interestRate) ** -(12 * this.loanDuration))) * this.value;
     this.totalCost = this.monthlyLoanPayment * 12 * this.loanDuration;
+
+    this.equityToUse = this.realEstateValue - this.value;
   }
 
   previous() {
@@ -109,8 +110,7 @@ export class LoanPageComponent implements OnInit {
 
   next() {
     if (this.form.valid) {
-      console.log('yes');
-    }
+      this.router.navigate(['result']);    }
     this.isClicked = true;
   }
 }

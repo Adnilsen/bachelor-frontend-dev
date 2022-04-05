@@ -37,7 +37,7 @@ describe('broker page', () => {
   });
 
   it('has the correct title', () => {
-    cy.get('h1').contains('Boligen vi har kjøpt');
+    cy.get('h1').contains('Boligen jeg har kjøpt');
   });
 
   it('chooses a broker and navigate to collateral page', () => {

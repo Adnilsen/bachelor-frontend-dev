@@ -13,8 +13,9 @@ section {
   }
 }
 
-p {
-  font-size: 16px;
+img {
+  width: 3rem;
+  margin-right: 1rem;
 }
 
 .expandable-container {
@@ -29,13 +30,4 @@ mat-expansion-panel-header {
   display: flex;
   background-color: white !important;
 
-}
-
-.navigation-button-container{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-button{
-  margin-right: 0.5rem;
 }

@@ -7,6 +7,13 @@ import { TranslateModule } from '@ngx-translate/core';
 describe('CollateralPageComponent', () => {
   let component: CollateralPageComponent;
   let fixture: ComponentFixture<CollateralPageComponent>;
+  const initialState = {
+    postName: {
+      result: "Langhus",
+      valid: true,
+      postalCodeType: "-"
+    }
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,6 +25,7 @@ describe('CollateralPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CollateralPageComponent);
     component = fixture.componentInstance;
+    component.postName = initialState.postName;
     fixture.detectChanges();
   });
 
