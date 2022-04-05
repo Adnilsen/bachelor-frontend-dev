@@ -2,7 +2,9 @@
   <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
   <section *ngIf='!loading'>
     <h1>Boliglån</h1>
-    <p [innerHTML]='"loan-selection.sub-title" | translate'></p>
+    <p [innerHTML]='"loan-selection.sub-title" | translate: {
+      address: collateral.realEstate.address
+    }'></p>
     <div class='expandable-container'>
       <mat-accordion>
         <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -11,12 +13,12 @@
               <div style=' width: 100%; display: flex;'>
                 <div style='display: flex;'>
                   <img [src]="'assets/images/house.svg'" alt='' style='margin-right: 1rem;'/>
-                  <strong><p>
-                    Boliglån
-                  </p></strong>
+                  <strong style="width: 12rem">
+                    <p>Grønt boliglån</p>
+                  </strong>
                 </div>
                 <div style='width: 100%; text-align: right'>
-                  <p><strong>Fra 1.85%</strong></p>
+                  <p><strong>Fra 2.0%</strong></p>
                 </div>
               </div>
             </mat-panel-title>

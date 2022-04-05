@@ -3,7 +3,7 @@
   <section *ngIf='!loading'>
     <div>
       <h1>{{'collateral-page.title' | translate}}</h1>
-      <p>Vi kan tilby deg følgende lån til <strong>Betzy Kjelsbergs vei 15, 0486 Oslo</strong>. For å dekke kjøp av boligen med omkostninger trenger dere totalt <b>
+      <p>Vi kan tilby deg følgende lån til <strong>{{collateral.realEstate.address}}, {{collateral.realEstate.postalCode}} Oslo</strong>. For å dekke kjøp av boligen med omkostninger trenger dere totalt <b>
         {{ realEstateValue | mask: 'separator.0'}} kr</b>.</p>
     </div>
     <div style='margin-bottom: 2rem' class='sliderContainer'>
@@ -33,46 +33,6 @@
         </mat-form-field>
       </div>
       <mat-slider [max]='30' [min]='1' [step]='1' [(ngModel)]="loanDuration" (input)='sliderDurationChanged($event)'></mat-slider>
-    </div>
-    <div style='display: flex; flex-direction: column; width: 50%;'>
-      <form [formGroup]='form' id='form' (ngSubmit)="next()">
-        <div class='inputContainer'>
-          <label class='selectorLabel'>Konto for utbetaling</label>
-          <mat-form-field appearance="fill">
-            <mat-select [formControl]="accountPaymentController" required placeholder='Kontonummer'>
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let account of accountNumbers" [value]="account">
-                {{account}}
-              </mat-option>
-            </mat-select>
-            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg et kontonummer</mat-error>
-          </mat-form-field>
-        </div>
-        <div class='inputContainer'>
-          <label class='selectorLabel'>Konto for nedbetaling</label>
-          <mat-form-field appearance="fill">
-            <mat-select [formControl]="accountRepaymentController" required placeholder='Kontonummer'>
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let account of accountNumbers" [value]="account">
-                {{account}}
-              </mat-option>
-            </mat-select>
-            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg et kontonummer</mat-error>
-          </mat-form-field>
-        </div>
-        <div class='inputContainer'>
-          <label class='selectorLabel'>Forfallsdato(dag i måneden)</label>
-          <mat-form-field appearance="fill">
-            <mat-select [formControl]="dateSelectController" required placeholder='Dato'>
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let day of daysOfMonth" [value]="day">
-                {{day}}
-              </mat-option>
-            </mat-select>
-            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg en dato</mat-error>
-          </mat-form-field>
-        </div>
-      </form>
     </div>
     <div>
       <div style='width: 100%; background-color: #F3F5F6; display: flex; align-content: center; height: 4rem'>
@@ -122,6 +82,44 @@
           </div>
         </div>
       </div>
+    </div>
+    <div style='display: flex; flex-direction: column; width: 50%; margin-top: 2rem'>
+      <form [formGroup]='form' id='form' (ngSubmit)="next()">
+        <div class='inputContainer'>
+          <label class='selectorLabel'>Konto for utbetaling</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="accountPaymentController" required placeholder='Velg konto'>
+              <mat-option *ngFor="let account of accountNumbers" [value]="account.accountNumber">
+                {{account.accountNumber}} - {{account.accountName}}
+              </mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg et kontonummer</mat-error>
+          </mat-form-field>
+        </div>
+        <div class='inputContainer'>
+          <label class='selectorLabel'>Konto for nedbetaling</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="accountRepaymentController" required placeholder='Velg konto'>
+              <mat-option *ngFor="let account of accountNumbers" [value]="account.accountNumber">
+                {{account.accountNumber}} - {{account.accountName}}
+              </mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg et kontonummer</mat-error>
+          </mat-form-field>
+        </div>
+        <div class='inputContainer'>
+          <label class='selectorLabel'>Forfallsdato (dato i måneden)</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="dateSelectController" required placeholder='Dato'>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let day of daysOfMonth" [value]="day">
+                {{day}}. i måneden
+              </mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="dateSelectController.hasError('required')">Velg en dato</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
     </div>
     <section class='navigation-button-container'>
       <button mat-stroked-button color='primary' (click)='previous()'>Forrige</button>
