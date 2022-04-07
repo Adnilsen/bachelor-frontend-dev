@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {RealEstate} from "../../interfaces/collateral.interface";
 
 @Component({
   selector: 'app-loan-page',
@@ -13,6 +14,8 @@ export class LoanPageComponent implements OnInit {
   loading!: boolean;
 
   value = 0;
+
+  collateral!: RealEstate;
 
   realEstateValue = 3000000;
 
@@ -57,7 +60,10 @@ export class LoanPageComponent implements OnInit {
       repayment: this.accountRepaymentController,
     });
 
-    this.maxValue = Number(localStorage.getItem('requiredLoanAmount'));
+    // @ts-ignore
+    this.collateral = JSON.parse(localStorage.getItem('collateral'));
+
+    this.maxValue = this.collateral.purchaseAmount * 0.85;
     this.value = this.maxValue;
     this.calculateLoan();
   }

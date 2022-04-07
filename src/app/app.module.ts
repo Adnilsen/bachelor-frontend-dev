@@ -35,6 +35,8 @@ import { YourLoanApplicationComponent } from './shared/pages/your-loan-applicati
 import {ExpansionPanelComponent} from "./shared/components/expansion-panel/expansion-panel.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
+import { SummaryComponent } from './shared/pages/summary/summary.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,6 +58,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     LoanPageComponent,
     ResultComponent,
     YourLoanApplicationComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatSelectModule,
     ReactiveFormsModule,
     MatExpansionModule,
+    MatCheckboxModule,
     MatChipsModule,
     MatInputModule,
     NgxSliderModule,

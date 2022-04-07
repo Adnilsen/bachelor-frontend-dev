@@ -1,0 +1,63 @@
+<body>
+<mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
+<section *ngIf='!loading'>
+  <h1>{{'summary.title' | translate}}</h1>
+  <app-information-area [headerText]='"Legg merke til"' [mainText]='"Vi har hentet inn informasjon om ditt finansierinsbevis og gjeldende kjøpskontrakt. Du må bekrefte at denne informasjonen stemmer før du går til neste steg."'></app-information-area>
+  <div>
+    <h2>{{'summary.pre-approval-data.title' | translate}}</h2>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.applicant' | translate }}</div>
+      <div style="width: 60%">Kari Nordmann</div>
+    </div>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.marital-status' | translate }}</div>
+      <div style="width: 60%">Singel</div>
+    </div>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.income' | translate}}</div>
+      <div style="width: 60%">860 000 kr</div>
+    </div>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.equity' | translate}}</div>
+      <div style="width: 60%">250 000 kr</div>
+    </div>
+    <div style="display: flex; width: 100%; align-content: space-between; height: 1.5rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.debt' | translate}}</div>
+      <div style="width: 60%">1 200 000 kr</div>
+    </div>
+  </div>
+  <div>
+    <h2>{{'summary.contract-data.title' | translate}}</h2>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.address' | translate}}</div>
+      <div style="width: 60%">{{collateral.address + ", " + collateral.postalCode}}</div>
+    </div>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.purchaseValue' | translate}}</div>
+      <div style="width: 60%">{{collateral.purchaseAmount | mask:"separator.0"}} kr</div>
+    </div>
+    <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.95); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.sharedDebt' | translate}}</div>
+      <div style="width: 60%">{{collateral.sharedDebt}} kr</div>
+    </div>
+    <div style="display: flex; width: 100%; align-content: space-between; height: 1.5rem">
+      <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.broker' | translate}}</div>
+      <div style="width: 60%">{{broker.name}}</div>
+    </div>
+  </div>
+  <section>
+    <div style="border: 1px solid #808080; border-radius: 0.3rem; height: 2.5rem;">
+      <mat-checkbox style="width: 100%; height: 100%; margin-top: 0.5rem; margin-left: 0.5rem" [formControl]="requiredConfirmController">Jeg bekrefter at informasjonen stemmer.</mat-checkbox>
+      <mat-error *ngIf="!requiredConfirmController.value === true && isClicked">
+        * Informasjonen må bekreftes for å gå videre
+      </mat-error>
+    </div>
+  </section>
+  <section>
+    <div class='navigation-button-container'>
+      <button mat-raised-button color="primary" (click)="next()">{{'landing-page.next-button' | translate}}</button>
+    </div>
+  </section>
+</section>
+
+</body>

@@ -26,7 +26,11 @@ export class AltinnService {
         cooperativeName: "Turten Borettslag",
         unitNumber: 23,
         sharedDebt: 120_000,
-        postalCode: "0165"
+        postalCode: "0165",
+        leaseNumber: 44,
+        sectionNumber: 3455,
+        titleNumber: 4555,
+        cadastralNumber: 5666
       } as RealEstate
     } as Collateral
   }

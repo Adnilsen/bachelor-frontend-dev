@@ -19,14 +19,6 @@ section {
     font-size: 16px;
   }
 
-  ::ng-deep .mat-select-disabled .mat-select-value{
-    color: black !important;
-  }
-
-  ::ng-deep .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
-    color: black !important;
-  }
-
   .mat-form-field {
     width: 100% !important;
   }
@@ -40,6 +32,37 @@ section {
 
   ::ng-deep .mat-form-field-underline {
     display: none;
+  }
+
+  .expandableContainer {
+    font-size: 16px;
+    margin-top: 2rem;
+  }
+
+  .innerContainer, .innerContainerBottom{
+    display: flex;
+    width: 100%;
+    align-content: space-between;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+
+    .leftSplit{
+      width: 40%;
+      margin-left: 2rem;
+    }
+
+    .rightSplit {
+      width: 60%;
+    }
+  }
+
+  ::ng-deep .mat-checkbox-label .mat-checkbox-layout {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .innerContainer {
+    border-bottom: 1px solid rgba(54,54,54,0.65);
   }
 
   .selectorLabel {
@@ -118,7 +141,7 @@ form {
 }
 
 .navigation-button-container{
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
