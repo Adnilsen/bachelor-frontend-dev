@@ -16,6 +16,8 @@ export class BrokerPageComponent implements OnInit {
 
   brokerControl = new FormControl('', Validators.required);
 
+  requiredConfirmController = new FormControl('', Validators.requiredTrue);
+
   brokers: Broker[] = [];
 
   constructor(private brokerService: BrokerService, private router: Router) {}
@@ -23,6 +25,7 @@ export class BrokerPageComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       broker: this.brokerControl,
+      confirmedContractData: this.requiredConfirmController
     });
 
     this.loading = false;
@@ -33,6 +36,15 @@ export class BrokerPageComponent implements OnInit {
       this.loading = false;
       this.brokers = brokers;
     });*/
+
+  }
+
+  isClicked: boolean = false;
+
+
+  exit() {
+    this.router.navigate(['']);
+
   }
 
   next() {
@@ -41,5 +53,8 @@ export class BrokerPageComponent implements OnInit {
       localStorage.setItem('broker', JSON.stringify(this.form.get('broker')?.value));
       this.router.navigate(['collateral']);
     }
+
+    this.isClicked = true;
+
   }
 }

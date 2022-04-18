@@ -46,12 +46,20 @@ body {
     .rightContainer{
       width: 100%;
     }
+    .inputContainerDown {
+      width: 80% !important;
+    }
   }
 
   .mat-form-field {
     width: 100% !important;
   }
 
+  @media (max-width: 500px) {
+    section {
+      width: 100% !important;
+    }
+  }
   ::ng-deep .mat-form-field-flex {
     border-radius: 0.3rem !important;
     padding: 0 0.75em 0 0.75em !important;
@@ -65,6 +73,11 @@ body {
 
   .inputContainer {
     margin-bottom: 1rem;
+  }
+
+  .inputContainerDown {
+    margin-bottom: 1rem;
+    width: 30%;
   }
 
   .mat-form-field .mat-select.mat-select-invalid {
@@ -168,7 +181,7 @@ body {
   .text-splitter-header {
     display: flex;
     align-content: center;
-    flex-direction: column;
+    flex-direction: row;
     background-color: $prim-color;
     color: white;
 
@@ -194,7 +207,6 @@ body {
 
     img {
       margin-left: 1rem;
-      margin-top: 1rem;
     }
   }
 

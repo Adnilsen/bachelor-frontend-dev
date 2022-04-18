@@ -5,6 +5,8 @@ import { AltinnService } from '../../../../core/altinn/altinn.service';
 import { Collateral } from '../../../interfaces/collateral.interface';
 //import { PostCodeService } from "../../../../core/postCode/post-code.service";
 import { PostCode } from "../../../interfaces/postcode.interface";
+import {Case} from "../../../interfaces/case.interface";
+import {PostCodeService} from "../../../../core/postCode/post-code.service";
 
 @Component({
   selector: 'app-collateral-page',
@@ -18,35 +20,44 @@ export class CollateralPageComponent implements OnInit {
 
   form!: FormGroup;
 
+  case!: Case;
+
   collateral!: Collateral;
 
   selectedType = 'HOUSING-CO-OPERATIVE';
 
-  requiredConfirmController = new FormControl('', Validators.required);
+  requiredInsuranceSelect = new FormControl('', Validators.required);
 
   postName!: PostCode;
 
   confirmed!: boolean;
 
-  constructor(private router: Router, private altinnService: AltinnService,/* private postCodeService: PostCodeService*/) {}
+  insuranceCompanies = [{name: "if"}, {name: "Gjensidige"}]
+
+  isClicked: boolean = false;
+
+  constructor(private router: Router, private altinnService: AltinnService, private postCodeService: PostCodeService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
-      confirmedContractData: this.requiredConfirmController
+      requiredInsuranceData: this.requiredInsuranceSelect
     });
+
+    // @ts-ignore
+    this.case = JSON.parse(localStorage.getItem('case'))
 
     this.loading = false;
     // TODO slett etter gjennomgang frontend
-    this.collateral = this.altinnService.getMockAltinnData();
+    this.collateral = this.altinnService.getMockAltinnData(this.case.customer.id);
     if (this.collateral.realEstate.type === 'Borettslag') {
       this.selectedType = 'HOUSING-CO-OPERATIVE';
     } else {
       this.selectedType = 'CONDOMINIUM';
     }
 
-    /*this.postCodeService.getPostName(this.collateral.realEstate.postalCode).subscribe((postName) => {
-      this.postName = postName
-    });*/
+    this.postCodeService.getPostName(this.collateral.realEstate.postalCode).subscribe((postName) => {
+      this.postName = postName;
+    });
 
     /*this.altinnService.getAltinnData(1, 2).subscribe((collateral) => {
       if (collateral) {
@@ -76,14 +87,12 @@ export class CollateralPageComponent implements OnInit {
     this.router.navigate(['your-loan-applications']);
   }
 
-  isClicked: boolean = false;
 
   next() {
-    if(this.requiredConfirmController.value === true) {
+    if(this.form.valid) {
       localStorage.setItem('collateral', JSON.stringify(this.collateral.realEstate));
       this.router.navigate(['summary']);
     }
-
     this.isClicked = true;
   }
 }

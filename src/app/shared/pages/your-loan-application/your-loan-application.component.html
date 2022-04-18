@@ -1,6 +1,6 @@
 <body>
   <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
-  <article *ngIf='!loading'>
+  <article *ngIf='!loading'  style="margin-top: 1rem">
     <h1>Dine lånesøknader</h1>
     <app-information-area [headerText]='"Info"' [mainText]='"Her vil du kunne se dine pågående eller ferdigstilte lånesøknader. Ved å trykke på en lånesøknad vil du få mer informasjon og kunne gå til eventuelle videre steg i søknaden"'></app-information-area>
     <section>

@@ -55,7 +55,8 @@ export class ExpansionPanelComponent implements OnInit {
     }
   }
 
-  next() {
+  next(curCase: Case) {
+    localStorage.setItem('case', JSON.stringify(curCase));
     this.router.navigate(['landing']);
   }
 }

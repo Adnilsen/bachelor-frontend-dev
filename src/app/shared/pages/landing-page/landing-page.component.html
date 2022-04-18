@@ -3,16 +3,20 @@
   <section *ngIf='!loading'>
     <h1>{{'landing-page.title' | translate}}</h1>
     <div class='information-container'>
-      <img src='../../../../assets/images/house.svg' alt=''>
+      <img src='../../../../assets/images/house.svg' alt='' style="margin-left: 0.5rem">
       <p [innerHTML]='"landing-page.information-container.house" | translate'></p>
     </div>
     <div class='information-container'>
-      <img src='../../../../assets/images/requirements.svg' alt=''>
+      <img src='../../../../assets/images/requirements.svg' alt='' style="margin-left: 0.5rem">
       <p [innerHTML]='"landing-page.information-container.loan" | translate'></p>
     </div>
     <div class='information-container'>
-      <img src='../../../../assets/images/bankID.svg' alt='' style='min-width: 2.5rem'>
+      <img src='../../../../assets/images/bankID.svg' alt='' style='min-width: 3rem; margin-left: 0.1rem'>
       <p [innerHTML]='"landing-page.information-container.altinn" | translate'></p>
+    </div>
+    <div class='information-container'>
+      <img src='../../../../assets/images/clock.svg' alt='' style='min-width: 2.4rem; margin-left: 0.5rem'>
+      <p [innerHTML]='"landing-page.information-container.time" | translate'></p>
     </div>
     <app-information-area [headerText]='"Legg merke til"' [mainText]='"Søknaden kan avbrytes når som helst, og din søknad blir ikke behandlet før du eventuelt godtar et tilbud, eller trykker “send søknad”"'></app-information-area>
     <div class='navigation-button-container'>

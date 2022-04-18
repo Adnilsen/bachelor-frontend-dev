@@ -32,12 +32,14 @@ export class CaseService {
         customerFirstName: "Kari",
         customerLastName: "Normann",
         id: 123,
-      } as Customer
+      } as Customer,
+      gatheredDebt: 200000,
+      totalEquity: 500000
     },
       {
         caseId: 133,
         status: "Klar til å fortsette",
-        amount: 2_500_000,
+        amount: 10_000_000,
         finished: true,
         date: new Date(),
         product: {
@@ -50,8 +52,10 @@ export class CaseService {
           role: "owner",
           customerFirstName: "Kari",
           customerLastName: "Normann",
-          id: 123,
-        } as Customer
+          id: 111,
+        } as Customer,
+        gatheredDebt: 200000,
+        totalEquity: 3000000
       }] as Case[]
   }
 }

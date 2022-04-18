@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {RealEstate} from "../../interfaces/collateral.interface";
+import {Case} from "../../interfaces/case.interface";
 
 @Component({
   selector: 'app-loan-page',
@@ -17,7 +18,10 @@ export class LoanPageComponent implements OnInit {
 
   collateral!: RealEstate;
 
-  realEstateValue = 3000000;
+  case!: Case;
+
+  minEquity!: number;
+
 
   equityToUse = 50000;
 
@@ -33,16 +37,19 @@ export class LoanPageComponent implements OnInit {
 
   totalCost = 0;
 
+  totalRealEstateValue?: number;
+
+  documentFee?: number;
+
   accountPaymentController = new FormControl('', Validators.required);
 
   accountRepaymentController = new FormControl('', Validators.required);
 
   dateSelectController = new FormControl('', Validators.required);
 
-  daysOfMonth = [1, 2, 3, 4, 5, 6, 7];
+  daysOfMonth = [];
 
-  accountNumbers = [1333556699636, 6778222995646];
-
+  accountNumbers = [{accountNumber: "1333556699636", accountName: "Lønnskonto"},{accountNumber: "6778222995646", accountName: "Sparekonto"}];
   nominalInterestRate = 2;
 
   effectiveInterestRate = 2.09;
@@ -51,21 +58,42 @@ export class LoanPageComponent implements OnInit {
 
   informationContentText!: string;
 
+  loanValueValid = true;
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
       dateSelect: this.dateSelectController,
-      payment: this.accountPaymentController,
       repayment: this.accountRepaymentController,
     });
 
     // @ts-ignore
     this.collateral = JSON.parse(localStorage.getItem('collateral'));
+    // @ts-ignore
+    this.case = JSON.parse(localStorage.getItem('case'));
 
     this.maxValue = this.collateral.purchaseAmount * 0.85;
+    this.minEquity = this.collateral.purchaseAmount * 0.15;
+    console.log(this.minEquity)
+    console.log(this.case.totalEquity)
     this.value = this.maxValue;
+    if (this.minEquity <= this.case.totalEquity) {
+      this.minValue = this.collateral.purchaseAmount - this.case.totalEquity;
+    } else {
+      this.minValue = 200000;
+    }
+
+    if( this.collateral.type === "Borettslag") {
+      this.totalRealEstateValue = this.collateral.purchaseAmount + 5000;
+    }
+    else {
+      this.documentFee = (this.collateral.purchaseAmount * 0.025);
+      this.totalRealEstateValue = this.collateral.purchaseAmount + this.documentFee + 5000;
+    }
+
     this.calculateLoan();
+    this.appendDaysOfMonth()
   }
 
   sliderValueChanged(value: any) {
@@ -82,9 +110,21 @@ export class LoanPageComponent implements OnInit {
     if (value <= this.maxValue) {
       this.value = value;
     } else {
+      this.loanValueValid = false;
       this.value = this.maxValue;
     }
     this.calculateLoan();
+  }
+
+  minValueChange(value: FocusEvent) {
+    if (this.value < this.minValue) {
+      this.value = this.minValue;
+      this.calculateLoan();
+      this.loanValueValid = false;
+    }
+    else {
+      this.loanValueValid = true;
+    }
   }
 
   inputDurationChanged(value: number) {
@@ -101,7 +141,14 @@ export class LoanPageComponent implements OnInit {
     this.monthlyLoanPayment = (interestRate / (1 - (1 + interestRate) ** -(12 * this.loanDuration))) * this.value;
     this.totalCost = this.monthlyLoanPayment * 12 * this.loanDuration;
 
-    this.equityToUse = this.realEstateValue - this.value;
+    this.equityToUse = this.collateral.purchaseAmount - this.value;
+  }
+
+  appendDaysOfMonth() {
+    for(let i = 1; i < 31; i++) {
+      // @ts-ignore
+      this.daysOfMonth.push(i);
+    }
   }
 
   previous() {
@@ -116,7 +163,8 @@ export class LoanPageComponent implements OnInit {
 
   next() {
     if (this.form.valid) {
-      this.router.navigate(['result']);    }
+      this.router.navigate(['result']);
+    }
     this.isClicked = true;
   }
 }

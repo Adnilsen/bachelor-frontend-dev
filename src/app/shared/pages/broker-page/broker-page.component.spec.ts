@@ -89,6 +89,7 @@ describe('BrokerPageComponent', () => {
     let broker = component.form.controls['broker'];
     broker.setValue('Nordvik');
     fixture.detectChanges();
+    component.form.controls['confirmedContractData'].setValue(true);
     po.getnextButton.nativeElement.click();
     fixture.detectChanges();
     const spy = router.navigate as jasmine.Spy;
@@ -105,6 +106,10 @@ describe('BrokerPageComponent', () => {
 
     get getBrokerElement(): DebugElement[] {
       return fixture.debugElement.queryAll(By.css('mat-option'));
+    }
+
+    get getConfirmElement(): DebugElement {
+      return fixture.debugElement.query(By.css('mat-checkbox'));
     }
 
     get getnextButton(): DebugElement {

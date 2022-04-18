@@ -38,6 +38,14 @@ export class SummaryComponent implements OnInit {
 
   isClicked: boolean = false;
 
+  previous() {
+    this.router.navigate(['collateral']);
+  }
+
+  cancel() {
+    this.router.navigate(['your-loan-applications']);
+  }
+
   next() {
     if (this.requiredConfirmController.value === true) {
       this.router.navigate(['loan']);
