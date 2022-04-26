@@ -4,7 +4,7 @@ body {
 }
 
 section {
-  width: 60%;
+  width: 50%;
 }
 
 @media (max-width: 1000px) {
@@ -29,5 +29,13 @@ img {
 mat-expansion-panel-header {
   display: flex;
   background-color: white !important;
+}
 
+.navigation-button-container{
+  margin-top: 1rem;
+  width: 100%;
+}
+
+button{
+  margin-right: 1rem;
 }

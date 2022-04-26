@@ -1,5 +1,7 @@
 @import "./src/assets/styling/variables";
 
+$prim-color: #005FA3;
+$secondary-color: #EEF6FA;
 
 body {
   display: flex;
@@ -8,12 +10,44 @@ body {
 
 .loanPage {
   section {
-    width: 60%;
+    width: 100%;
   }
 
-  @media (max-width: 1000px) {
+  .headerContainer {
+    width: 50%;
+  }
+
+  .contentDivider {
+    display: flex;
+    justify-content: space-between
+  }
+
+  .leftContainer {
+    width: 50%;
+  }
+
+  .rightContainer{
+    width: 45%;
+  }
+
+  @media (max-width: 1300px) {
     section {
+      width: 80%;
+    }
+    .headerContainer {
       width: 100%;
+    }
+    .contentDivider {
+      flex-direction: column;
+    }
+    .leftContainer {
+      width: 100%;
+    }
+    .rightContainer{
+      width: 100%;
+    }
+    .inputContainerDown {
+      width: 80% !important;
     }
   }
 
@@ -21,6 +55,11 @@ body {
     width: 100% !important;
   }
 
+  @media (max-width: 500px) {
+    section {
+      width: 100% !important;
+    }
+  }
   ::ng-deep .mat-form-field-flex {
     border-radius: 0.3rem !important;
     padding: 0 0.75em 0 0.75em !important;
@@ -34,6 +73,11 @@ body {
 
   .inputContainer {
     margin-bottom: 1rem;
+  }
+
+  .inputContainerDown {
+    margin-bottom: 1rem;
+    width: 30%;
   }
 
   .mat-form-field .mat-select.mat-select-invalid {
@@ -79,11 +123,11 @@ body {
   ::ng-deep {
 
     .mat-slider-track-fill {
-      background-color: $brand-color !important;
+      background-color: $prim-color !important;
     }
 
     .mat-slider-thumb {
-      background-color: #0079b6 !important;
+      background-color: $prim-color !important;
       border: 0 !important;
       box-shadow: 0 0 15px #000;
       outline: 8px solid #0079b6;
@@ -102,12 +146,13 @@ body {
     }
   }
 
-  $prim-color: #0A78B1;
-  $secondary-color: #EEF6FA;
+
 
   .outer-container {
     display: flex;
     width: 100%;
+    background-color: $secondary-color;
+    margin-bottom: 1rem;
   }
 
   .left-container {
@@ -129,13 +174,21 @@ body {
   }
 
   .text-container {
-    margin-top: 0.5rem;
     width: 100%;
+    margin-bottom: 0.5rem;
   }
 
   .text-splitter-header {
-    margin-left: 1rem;
-    max-width: 95%;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    background-color: $prim-color;
+    color: white;
+
+    p {
+      margin-left: 1rem;
+      font-size: 18px;
+    }
   }
 
   .text-splitter {
@@ -154,7 +207,6 @@ body {
 
     img {
       margin-left: 1rem;
-      margin-top: 1rem;
     }
   }
 

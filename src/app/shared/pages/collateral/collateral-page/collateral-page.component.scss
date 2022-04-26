@@ -5,7 +5,7 @@ body {
   justify-content: center;
 }
 section {
-  width: 60%;
+  width: 50%;
 }
 
 @media (max-width: 1000px) {
@@ -17,14 +17,6 @@ section {
 #collateralPage {
   input, p, label {
     font-size: 16px;
-  }
-
-  ::ng-deep .mat-select-disabled .mat-select-value{
-    color: black !important;
-  }
-
-  ::ng-deep .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
-    color: black !important;
   }
 
   .mat-form-field {
@@ -40,6 +32,37 @@ section {
 
   ::ng-deep .mat-form-field-underline {
     display: none;
+  }
+
+  .expandableContainer {
+    font-size: 16px;
+    margin-top: 2rem;
+  }
+
+  .innerContainer, .innerContainerBottom{
+    display: flex;
+    width: 100%;
+    align-content: space-between;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+
+    .leftSplit{
+      width: 40%;
+      margin-left: 2rem;
+    }
+
+    .rightSplit {
+      width: 60%;
+    }
+  }
+
+  ::ng-deep .mat-checkbox-label .mat-checkbox-layout {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .innerContainer {
+    border-bottom: 1px solid rgba(54,54,54,0.65);
   }
 
   .selectorLabel {
@@ -68,6 +91,32 @@ section {
       line-height:10px;
       margin-top: -8px;
     }
+  }
+
+  .inputContainerDown {
+    width: 50% !important;
+    margin-top: 2rem;
+  }
+
+  .error {
+    font-size: 16px;
+  }
+
+  .mat-form-field .mat-select.mat-select-invalid {
+    ::ng-deep .mat-select-placeholder {
+      color: red;
+    }
+  }
+
+  ::ng-deep .mat-select-placeholder {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    margin-top: 0.8rem !important;
   }
 }
 
@@ -129,3 +178,5 @@ button{
 mat-form-field {
   width: 100%;
 }
+
+

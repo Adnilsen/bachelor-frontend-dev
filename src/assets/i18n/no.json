@@ -2,9 +2,10 @@
   "landing-page": {
     "title": "Før du setter i gang...",
     "information-container": {
-      "house": "Boliglån passer godt til deg som skal <b>låne til ny bolig</b> eller <b>pusse opp boligen</b>",
+      "house": "Gratulerer med kjøp av ny bolig. Vi trenger ytterligere informasjon fra deg for å ferdigstille søknaden.",
       "loan": "Du kan få en låneramme på <b>inntil 85% av boligverdien</b>, så fremt du har <b>15% av lånerammen i egenkapital</b>",
-      "altinn": "Du trenger <b>BankID</b> for å søke, og du bør ha <b>god oversikt over økonomien din</b>, som hvor høyt lån du kan betjene."
+      "altinn": "Du trenger <b>BankID</b> for å søke. Videre må du oppgi informasjon om hvilken megler du har brukt.",
+      "time": "Prosessen vil ta ca. 4 minutter"
     },
     "next-button": "Start søknad"
   },
@@ -25,30 +26,30 @@
     "title": "Boligen jeg har kjøpt",
     "sub-title": "Sikkerhet i bolig",
     "information-title": "Hvorfor må du stille sikkerhet i boligen?",
-    "information-content": "Du må stille med sikkerhet i boligen du har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier. <br><br>Informasjonen om boligen er automatisk uthentet fra Altinn.",
+    "information-content": "Du må stille med sikkerhet i boligen du har kjøpt som en forsikring til oss. Helt enkelt betyr dette at vi kan tilbakekreve penger i form av boligen hvis lånet ikke blir nedbetalt slik låneavtalen tilsier. <br><br>Informasjonen om boligen er <b>automatisk uthentet fra Altinn</b>.",
     "expansion-panel": {
       "title": "Adresse",
       "error-title": "Vi kunne ikke hente kjøpskontrakten fra Altinn. Fyll ut feltene selv",
       "content": {
         "housing-type-title": "Type bolig",
         "housing-type-sub-label": "Type bolig",
-        "purchase-amount-title": "Kjøpesum *",
-        "purchase-amount-sub-title": "Kjøpesum",
+        "purchase-amount-title": "Kjøpesum:",
+        "purchase-amount-sub-title": "Kjøpesum:",
         "purchase-amount-error": "*Fyll inn kjøpesum",
         "housing-co-operative": {
-          "choose-co-operative": "Velg borettslag",
+          "choose-co-operative": "Borettslag",
           "choose-co-operative-sub-label": "Borettslag",
-          "unit-number": "Andelsnummer",
+          "unit-number": "Andelsnummer:",
           "unit-number-sub-label": "Fyll inn andelsnummer",
-          "shared-debt-title": "Fellesgjeld *",
+          "shared-debt-title": "Fellesgjeld:",
           "shared-debt-sub-title": "Fellesgjeld",
           "shared-debt-error": "*Fyll inn fellesgjeld"
         },
         "condominium": {
-          "address-title": "Adresse *",
+          "address-title": "Adresse",
           "address-sub-title": "Fyll inn adresse",
           "address-error": "*Fyll inn adresse",
-          "postal-code-title": "Postnummer *",
+          "postal-code-title": "Postnummer",
           "postal-code-sub-title": "Postnummer",
           "postal-code-error": "Fyll inn postnummer",
           "cadastral-number-title": "Gårdsnummer",
@@ -76,6 +77,25 @@
       "content": "Siden du skal kjøpe en bolig med <b>energimerke A eller B</b> får dere ekstra god rente med grønt boliglån. Dere får også tilbud om en ytterligere redusert rente fordi dere har en grønn miljøprofil."
     },
     "next-button": "Neste"
+  },
+  "summary": {
+    "title": "Oppsummering",
+    "pre-approval-data": {
+      "title": "Data fra finansieringsbevis",
+      "applicant": "Lånetaker",
+      "marital-status": "Sivilstatus",
+      "debt": "Samlet gjeld",
+      "income": "Inntekt før skatt",
+      "equity": "Tilgjengelig egenkapital"
+    },
+    "contract-data": {
+      "title": "Informasjon fra kjøpskontrakt",
+      "address": "Adresse",
+      "purchaseValue": "Kjøpesum",
+      "sharedDebt": "Fellesgjeld",
+      "broker": "Brukt megler"
+    },
+    "button": "Neste"
   },
   "loan-page": {
     "used-equity": "<b>Benyttet egenkapital:</b> {{equityUsed}} kr",

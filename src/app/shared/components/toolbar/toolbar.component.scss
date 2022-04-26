@@ -18,7 +18,16 @@
 
   p {
     margin-right: auto;
-    margin-left: -120px;
+    margin-left: -150px;
+  }
+
+  @media (max-width: 500px) {
+    .headerContainer {
+      flex-direction: column !important;
+    }
+    p {
+      margin-left: 0;
+    }
   }
 
 }

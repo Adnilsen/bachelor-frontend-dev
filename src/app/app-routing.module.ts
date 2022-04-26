@@ -4,9 +4,9 @@ import { BrokerPageComponent } from './shared/pages/broker-page/broker-page.comp
 import { CollateralPageComponent } from './shared/pages/collateral/collateral-page/collateral-page.component';
 import { LandingPageComponent } from './shared/pages/landing-page/landing-page.component';
 import { LoanPageComponent } from './shared/pages/loan-page/loan-page.component';
-import { LoanSelectionComponent } from './shared/pages/loan-selection/loan-selection.component';
 import { ResultComponent } from "./shared/pages/result/result.component";
 import {YourLoanApplicationComponent} from "./shared/pages/your-loan-application/your-loan-application.component";
+import {SummaryComponent} from "./shared/pages/summary/summary.component";
 
 const routes: Routes = [
   { path: '', component: YourLoanApplicationComponent },
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'landing', component: LandingPageComponent },
   { path: 'broker', component: BrokerPageComponent },
   { path: 'collateral', component: CollateralPageComponent },
-  { path: 'loan-selection', component: LoanSelectionComponent },
+  { path: 'summary', component: SummaryComponent },
   { path: 'loan', component: LoanPageComponent },
   { path: 'result', component: ResultComponent },
 ];

@@ -1,27 +1,36 @@
-<body>
+<body id="brokerPage">
   <mat-progress-spinner mode="indeterminate" *ngIf='loading'></mat-progress-spinner>
   <section *ngIf='!loading'>
     <div>
       <h1>{{'broker-page.title' | translate}}</h1>
       <app-information-area [headerText]='"broker-page.information-title"' [mainText]='"broker-page.information-content"'></app-information-area>
     </div>
-    <section style='width: 100%'>
-      <form [formGroup]='form'>
-        <p class='selectorLabel'>{{'broker-page.expansion-panel.title' | translate}}</p>
-        <mat-form-field appearance="fill">
-          <mat-label>{{'broker-page.expansion-panel.label' | translate}}</mat-label>
-          <mat-select [formControl]="brokerControl">
-            <mat-option>{{'broker-page.expansion-panel.placeholder' | translate}}</mat-option>
-            <mat-option *ngFor='let broker of brokers' [value]='broker'>{{broker.name}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="brokerControl.invalid">{{'broker-page.expansion-panel.error' | translate}}</mat-error>
-        </mat-form-field>
-      </form>
-    </section>
-    <section class='navigation-button-container'>
-      <button mat-stroked-button color='warn' type=''>{{'broker-page.abort-btn' | translate}}</button>
+    <div>
+      <div class='inputContainerDown'>
+        <form [formGroup]='form' id='form' (ngSubmit)="next()">
+          <label class='selectorLabel'>{{'broker-page.expansion-panel.title' | translate}}</label>
+          <mat-form-field appearance="fill">
+            <mat-select [formControl]="brokerControl" required placeholder='Megler'>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor='let broker of brokers' [value]='broker'>{{broker.name}}</mat-option>
+            </mat-select>
+            <mat-error class='error' *ngIf="brokerControl.invalid">*Velg en megler</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div style="border: 1px solid #808080; border-radius: 0.3rem; height: 2.5rem; width: 520px; margin-top: 1rem;">
+        <mat-checkbox style="width: 100%; height: 100%; margin-top: 0.5rem; margin-left: 0.5rem" [formControl]="requiredConfirmController">Jeg godkjenner at banken henter informasjon fra kjøpskontrakten  </mat-checkbox>
+        <mat-error class='error' *ngIf="!requiredConfirmController.value === true && isClicked">
+          * Informasjonen må bekreftes for å gå videre
+        </mat-error>
+      </div>
+    </div>
+    <div class='navigation-button-container'>
+      <button mat-stroked-button color='warn' (click)='exit()' type=''>{{'broker-page.abort-btn' | translate}}</button>
       <button mat-raised-button class="nextBtn" color="primary" type='submit' (click)='next()'>{{'broker-page.next-btn' | translate}}</button>
-    </section>
+    </div>
   </section>
 </body>
 

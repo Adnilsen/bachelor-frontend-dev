@@ -9,4 +9,6 @@ export interface Case {
   date: Date;
   product: Product;
   customer: Customer;
+  gatheredDebt: number;
+  totalEquity: number;
 }

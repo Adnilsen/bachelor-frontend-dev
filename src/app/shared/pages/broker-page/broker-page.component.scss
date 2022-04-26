@@ -7,28 +7,70 @@ body {
 }
 
 section {
-  width: 60%;
+  width: 50%;
 }
 
-strong, b {
-  font-weight: 500;
-}
+#brokerPage {
+  strong, b {
+    font-weight: 500;
+  }
 
-@media (max-width: 1000px) {
-  section {
+  @media (max-width: 1000px) {
+    section {
+      width: 100%;
+    }
+  }
+
+  .selectorLabel {
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+  }
+
+  button{
+    margin-right: 0.5rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .inputContainerDown {
+    width: 50% !important;
+    margin-top: 2rem;
+  }
+
+  .error {
+    font-size: 16px;
+    color: #ed0000;
+  }
+
+  ::ng-deep .mat-form-field-flex {
+    border-radius: 0.3rem !important;
+    padding: 0 0.75em 0 0.75em !important;
+    border: 1px solid rgba(0, 0, 0, 0.49) !important;
+    background-color: white !important;
+  }
+
+  .mat-form-field .mat-select.mat-select-invalid {
+    ::ng-deep .mat-select-placeholder {
+      color: #ed0000;
+    }
+  }
+
+  ::ng-deep .mat-select-placeholder {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    margin-top: 0.8rem !important;
+  }
+
+  .navigation-button-container{
+    margin-top: 2rem;
     width: 100%;
   }
 }
 
-.selectorLabel {
-  margin-bottom: 0.2rem;
-  font-weight: 500;
-}
-
-button{
-  margin-right: 0.5rem;
-}
-
-mat-form-field {
-  width: 100%;
-}
