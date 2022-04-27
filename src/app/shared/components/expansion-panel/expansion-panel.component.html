@@ -2,7 +2,7 @@
   <mat-expansion-panel *ngFor="let curCase of cases; let first = first" [expanded]="first" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header [collapsedHeight]="'4rem'">
       <mat-panel-title>
-        <h4>{{ curCase.product.type }}</h4>
+        <h4>{{ curCase.product.name }}</h4>
       </mat-panel-title>
       <mat-panel-description class="mat-expansion-panel-header-description">
           <div style="display: flex; align-content: center; background-color: #e3ffe2; border: 0.4px solid black; border-radius: 1rem; padding: 2px 3px 2px 3px"><img [src]="'assets/images/success.svg'" alt=''/> <p style="margin: 0; color: black;">{{ curCase.status }}</p></div>
@@ -10,12 +10,12 @@
     </mat-expansion-panel-header>
     <p>Lånetaker: {{ curCase.customer.customerFirstName + ' ' + curCase.customer.customerLastName }}</p>
     <p>Påbegynt: {{ curCase.date | date: 'dd:MM.YY kl. HH:mm' }}</p>
-    <mat-action-row>
+    <mat-action-row *ngIf="curCase.product.type === 'Preapproval letter'">
       <div style="display: flex; flex-direction: column">
         <div style="margin-bottom: 0.5rem">
           <label><b>Har du kjøpt ny bolig?</b></label>
         </div>
-       <div>
+       <div >
          <button mat-raised-button color="primary" (click)="next(curCase)" class="nextButton">Fullfør boliglånssøknad</button>
        </div>
       </div>

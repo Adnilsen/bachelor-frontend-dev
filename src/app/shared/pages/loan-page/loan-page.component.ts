@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {RealEstate} from "../../interfaces/collateral.interface";
+import {Collateral} from "../../interfaces/collateral.interface";
 import {Case} from "../../interfaces/case.interface";
+import {CaseService} from "../../../core/case/case.service";
 
 @Component({
   selector: 'app-loan-page',
@@ -16,7 +17,7 @@ export class LoanPageComponent implements OnInit {
 
   value = 0;
 
-  collateral!: RealEstate;
+  collateral!: Collateral;
 
   case!: Case;
 
@@ -60,7 +61,7 @@ export class LoanPageComponent implements OnInit {
 
   loanValueValid = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private caseService: CaseService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -75,16 +76,14 @@ export class LoanPageComponent implements OnInit {
 
     this.maxValue = this.collateral.purchaseAmount * 0.85;
     this.minEquity = this.collateral.purchaseAmount * 0.15;
-    console.log(this.minEquity)
-    console.log(this.case.totalEquity)
     this.value = this.maxValue;
-    if (this.minEquity <= this.case.totalEquity) {
-      this.minValue = this.collateral.purchaseAmount - this.case.totalEquity;
+    if (this.minEquity <= this.case.equity) {
+      this.minValue = this.collateral.purchaseAmount - this.case.equity;
     } else {
       this.minValue = 200000;
     }
 
-    if( this.collateral.type === "Borettslag") {
+    if( this.collateral.realEstate.type === "Borettslag") {
       this.totalRealEstateValue = this.collateral.purchaseAmount + 5000;
     }
     else {
@@ -163,7 +162,11 @@ export class LoanPageComponent implements OnInit {
 
   next() {
     if (this.form.valid) {
-      this.router.navigate(['result']);
+      this.caseService.updateCase(this.case).subscribe((resp: string) => {
+        if(resp) {
+          this.router.navigate(['result'])
+        }
+      });
     }
     this.isClicked = true;
   }

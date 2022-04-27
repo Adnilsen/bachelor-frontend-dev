@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {RealEstate} from "../../interfaces/collateral.interface";
+import {Collateral} from "../../interfaces/collateral.interface";
 import {Broker} from "../../interfaces/broker.interface";
+import {Case} from "../../interfaces/case.interface";
 
 @Component({
   selector: 'app-summary',
@@ -17,7 +18,9 @@ export class SummaryComponent implements OnInit {
 
   requiredConfirmController = new FormControl('', Validators.required);
 
-  collateral!: RealEstate;
+  case!: Case;
+
+  collateral!: Collateral;
 
   broker!: Broker;
 
@@ -28,6 +31,8 @@ export class SummaryComponent implements OnInit {
     this.form = new FormGroup({
       confirmedContractData: this.requiredConfirmController
     });
+    // @ts-ignore
+    this.case = JSON.parse(localStorage.getItem('case'))
 
     // @ts-ignore
     this.collateral = JSON.parse(localStorage.getItem('collateral'));

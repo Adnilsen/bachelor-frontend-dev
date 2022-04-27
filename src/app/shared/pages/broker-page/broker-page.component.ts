@@ -30,12 +30,12 @@ export class BrokerPageComponent implements OnInit {
 
     this.loading = false;
 
-    this.brokers = this.brokerService.getMockBrokers();
+    //this.brokers = this.brokerService.getMockBrokers();
 
-    /*this.brokerService.getBrokers().subscribe((brokers) => {
+    this.brokerService.getBrokers().subscribe((brokers) => {
       this.loading = false;
       this.brokers = brokers;
-    });*/
+    });
 
   }
 
@@ -50,7 +50,10 @@ export class BrokerPageComponent implements OnInit {
   next() {
     this.form.get('broker')?.markAsTouched();
     if (this.form.valid) {
-      localStorage.setItem('broker', JSON.stringify(this.form.get('broker')?.value));
+      localStorage.setItem('broker', JSON.stringify({
+        brokerId: this.form.get('broker')?.value.id,
+        name: this.form.get('broker')?.value.name,
+      }));
       this.router.navigate(['collateral']);
     }
 

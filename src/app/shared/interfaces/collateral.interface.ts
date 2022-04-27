@@ -1,6 +1,8 @@
 export interface Collateral {
   id: number;
   brokerId: number;
+  brokerAccount: number
+  purchaseAmount: number;
   socialSecurityNr: number;
   purchaseDate: Date;
   realEstate: RealEstate;
@@ -10,7 +12,7 @@ export interface RealEstate {
   id: number;
   address: string;
   type: string;
-  purchaseAmount: number;
+  energyClass: string;
   unitNumber?: number;
   cooperativeName?: string;
   sharedDebt?: number;

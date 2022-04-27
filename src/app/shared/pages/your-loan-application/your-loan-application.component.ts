@@ -16,11 +16,11 @@ export class YourLoanApplicationComponent implements OnInit {
   constructor(private caseService: CaseService) {}
 
   ngOnInit(): void {
-    /*this.caseService.getCases().subscribe((cases) => {
+    this.caseService.getCases().subscribe((cases) => {
       this.loading = false;
       this.cases = cases;
-    });*/
+    });
 
-    this.cases = this.caseService.getMockCases();
+    //this.cases = this.caseService.getMockCases();
   }
 }

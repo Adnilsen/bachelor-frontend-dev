@@ -7,7 +7,7 @@
     <h2>{{'summary.pre-approval-data.title' | translate}}</h2>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.applicant' | translate }}</div>
-      <div style="width: 60%">Kari Nordmann</div>
+      <div style="width: 60%">{{case.customer.customerFirstName + " " + case.customer.customerLastName}}</div>
     </div>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.marital-status' | translate }}</div>
@@ -15,34 +15,34 @@
     </div>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">Maksimal kjøpesum</div>
-      <div style="width: 60%">3 000 000 kr</div>
+      <div style="width: 60%">{{case.purchaseAmount| mask:"separator.0"}} kr</div>
     </div>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.income' | translate}}</div>
-      <div style="width: 60%">860 000 kr</div>
+      <div style="width: 60%">{{case.income| mask:"separator.0"}} kr</div>
     </div>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.equity' | translate}}</div>
-      <div style="width: 60%">250 000 kr</div>
+      <div style="width: 60%">{{case.equity! | mask:"separator.0"}} kr</div>
     </div>
     <div style="display: flex; width: 100%; align-content: space-between; height: 1.5rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.pre-approval-data.debt' | translate}}</div>
-      <div style="width: 60%">1 200 000 kr</div>
+      <div style="width: 60%">{{case.debt| mask:"separator.0"}} kr</div>
     </div>
   </div>
   <div>
     <h2>{{'summary.contract-data.title' | translate}}</h2>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.address' | translate}}</div>
-      <div style="width: 60%">{{collateral.address + ", " + collateral.postalCode}}</div>
+      <div style="width: 60%">{{collateral.realEstate.address + ", " + collateral.realEstate.postalCode}}</div>
     </div>
     <div style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.purchaseValue' | translate}}</div>
       <div style="width: 60%">{{collateral.purchaseAmount | mask:"separator.0"}} kr</div>
     </div>
-    <div *ngIf="collateral.type === 'Borettslag'" style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
+    <div *ngIf="collateral.realEstate.type === 'Borettslag'" style="display: flex; border-bottom: 2px solid rgba(54,54,54,0.45); width: 100%; align-content: space-between; height: 1.5rem; margin-bottom: 1rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.sharedDebt' | translate}}</div>
-      <div style="width: 60%">{{collateral.sharedDebt! | mask:"separator.0"}} kr</div>
+      <div style="width: 60%">{{collateral.realEstate.sharedDebt! | mask:"separator.0"}} kr</div>
     </div>
     <div style="display: flex; width: 100%; align-content: space-between; height: 1.5rem">
       <div style="width: 40%; margin-left: 0.5rem">{{ 'summary.contract-data.broker' | translate}}</div>

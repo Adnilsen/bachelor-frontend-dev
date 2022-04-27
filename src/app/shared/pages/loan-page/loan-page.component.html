@@ -8,7 +8,7 @@
       <div class="leftContainer">
         <div style='margin-bottom: 2rem' class='sliderContainer'>
           <h2>Lånedetaljer</h2>
-          <p>Vi kan tilby deg følgende lån til <strong>{{collateral.address + ", " + collateral.postalCode}}</strong>. For å dekke kjøp av boligen med omkostninger tilbys dere et maksimalt lån på <b>
+          <p>Vi kan tilby deg følgende lån til <strong>{{collateral.realEstate.address + ", " + collateral.realEstate.postalCode}}</strong>. For å dekke kjøp av boligen med omkostninger tilbys dere et maksimalt lån på <b>
             {{ maxValue | mask: 'separator.0'}} kr</b>.</p>
           <p style="color: #ed0000" *ngIf="!loanValueValid">* Beløpet du tastet inn er utenfor lånerammen din. Min: {{minValue | mask:"separator.0"}} kr - Max: {{maxValue | mask:"separator.0"}} kr</p>
           <div style='display: flex; flex-direction: column; width: 50%'>
@@ -99,7 +99,7 @@
                 <div style='flex-basis: 70%; font-weight: bold'>Omkostninger ved kjøp</div>
                 <div>5000 kr</div>
               </div>
-              <div class='text-splitter' *ngIf="collateral.type !== 'Borettslag'">
+              <div class='text-splitter' *ngIf="collateral.realEstate.type !== 'Borettslag'">
                 <div style='flex-basis: 70%; font-weight: bold'>Dokumentavgift</div>
                 <div>{{documentFee! | mask:"separator.0"}} kr</div>
               </div>

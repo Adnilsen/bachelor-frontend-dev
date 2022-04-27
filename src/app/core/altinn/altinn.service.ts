@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Collateral, RealEstate} from '../../shared/interfaces/collateral.interface';
+import {Collateral} from '../../shared/interfaces/collateral.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +8,12 @@ import {Collateral, RealEstate} from '../../shared/interfaces/collateral.interfa
 export class AltinnService {
   constructor(private httpClient: HttpClient) {}
 
-  getAltinnData(brokerId: number, uderId: number) {
-    return this.httpClient.get<Collateral>('http://localhost:8080/contract/broker/1/socialSecNumber/12049500339');
+  getAltinnData(brokerId: number, socialSecNumber: number) {
+    console.log(brokerId)
+    return this.httpClient.get<Collateral>('http://localhost:8080/contract/broker/'+brokerId+'/socialSecNumber/'+socialSecNumber);
   }
 
-  getMockAltinnData(id: number) {
+  /*getMockAltinnData(id: number) {
     if(id === 123) {
       return {
         id: 1,
@@ -55,7 +56,7 @@ export class AltinnService {
           cadastralNumber: 5666
         } as RealEstate
       } as Collateral
-    }
+    }*/
 
-  }
+  //}
 }

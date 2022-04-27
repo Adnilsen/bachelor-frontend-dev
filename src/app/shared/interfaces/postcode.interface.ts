@@ -1,5 +1,5 @@
 export interface PostCode {
-  result: string;
-  valid: boolean;
-  postalCodeType: string;
+  result?: string;
+  valid?: boolean;
+  postalCodeType?: string;
 }

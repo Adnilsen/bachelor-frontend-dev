@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Case } from '../../shared/interfaces/case.interface';
 import {Product} from "../../shared/interfaces/product.interface";
 import {Customer} from "../../shared/interfaces/customer.interface";
@@ -14,12 +14,29 @@ export class CaseService {
     return this.httpClient.get<Case[]>('http://localhost:8080/cases');
   }
 
+  startHousingLoan(caseId: number) {
+    return this.httpClient.get<string>('http://localhost:8080/cases/' + caseId);
+  }
+
+  updateCase(caseItem: Case) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Response-Type': 'text'
+      })
+    };
+    return this.httpClient.post<string>('http://localhost:8080/updateApplication/Green', JSON.stringify(caseItem), httpOptions);
+  }
+
   getMockCases() {
     return [{
       caseId: 133,
       status: "Klar til å fortsette",
-      amount: 2_500_000,
+      loanAmount: 2_500_000,
+      purchaseAmount: 3000000,
       finished: true,
+      income: 1,
       date: new Date(),
       product: {
         type: "Finansieringsbevis bolig",
@@ -33,9 +50,9 @@ export class CaseService {
         customerLastName: "Normann",
         id: 123,
       } as Customer,
-      gatheredDebt: 200000,
-      totalEquity: 500000
-    },
+      debt: 200000,
+      equity: 500000
+    } as Case,
       {
         caseId: 133,
         status: "Klar til å fortsette",

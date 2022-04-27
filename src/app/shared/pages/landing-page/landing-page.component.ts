@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {CaseService} from "../../../core/case/case.service";
 
 @Component({
   selector: 'app-landing-page',
@@ -9,13 +10,19 @@ import { Router } from '@angular/router';
 export class LandingPageComponent implements OnInit {
   loading!: boolean;
 
-  constructor(private router: Router) {}
+  caseId!: number;
+
+  constructor(private router: Router, private caseService: CaseService) {}
 
   ngOnInit(): void {
-    console.log('yes');
+  // @ts-ignore
+    this.caseId = JSON.parse(localStorage.getItem('case')).caseId;
   }
 
   next() {
+    this.caseService.startHousingLoan(this.caseId).subscribe((response: string) => {
+      console.log(response)
+    });
     this.router.navigate(['broker']);
   }
 }

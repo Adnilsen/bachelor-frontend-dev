@@ -3,9 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AltinnService } from '../../../../core/altinn/altinn.service';
 import { Collateral } from '../../../interfaces/collateral.interface';
-//import { PostCodeService } from "../../../../core/postCode/post-code.service";
 import { PostCode } from "../../../interfaces/postcode.interface";
 import {Case} from "../../../interfaces/case.interface";
+import {Broker} from "../../../interfaces/broker.interface";
 import {PostCodeService} from "../../../../core/postCode/post-code.service";
 
 @Component({
@@ -21,6 +21,8 @@ export class CollateralPageComponent implements OnInit {
   form!: FormGroup;
 
   case!: Case;
+
+  broker!: Broker;
 
   collateral!: Collateral;
 
@@ -45,38 +47,35 @@ export class CollateralPageComponent implements OnInit {
 
     // @ts-ignore
     this.case = JSON.parse(localStorage.getItem('case'))
+    // @ts-ignore
+    this.broker = JSON.parse(localStorage.getItem('broker'));
+    console.log(this.broker)
 
     this.loading = false;
     // TODO slett etter gjennomgang frontend
-    this.collateral = this.altinnService.getMockAltinnData(this.case.customer.id);
+    /*this.collateral = this.altinnService.getMockAltinnData(this.case.customer.id);
     if (this.collateral.realEstate.type === 'Borettslag') {
       this.selectedType = 'HOUSING-CO-OPERATIVE';
     } else {
       this.selectedType = 'CONDOMINIUM';
-    }
+    }*/
 
-    this.postCodeService.getPostName(this.collateral.realEstate.postalCode).subscribe((postName) => {
-      this.postName = postName;
-    });
-
-    /*this.altinnService.getAltinnData(1, 2).subscribe((collateral) => {
+    this.altinnService.getAltinnData(this.broker.brokerId, 12049500339).subscribe((collateral) => {
+      console.log(collateral)
       if (collateral) {
         this.collateral = collateral;
-        this.purhaseAmount.setValue(this.collateral.realEstate.purchaseAmount);
         if (collateral.realEstate.type === 'Borettslag') {
           this.selectedType = 'HOUSING-CO-OPERATIVE';
-          this.sharedDebt.setValidators(Validators.required);
-          this.sharedDebt.setValue(collateral.realEstate.sharedDebt);
         } else {
           this.selectedType = 'CONDOMINIUM';
-          this.postalNumberControl.setValidators(Validators.required);
-          this.postalNumberControl.setValue(collateral.realEstate.postalCode);
-
-          this.addressControl.setValidators(Validators.required);
-          this.addressControl.setValue(collateral.realEstate.address);
         }
+        this.postCodeService.getPostName(collateral.realEstate.postalCode).subscribe((postName) => {
+          this.postName = postName;
+        });
       }
-    });*/
+    });
+
+
   }
 
   previous() {
@@ -90,7 +89,7 @@ export class CollateralPageComponent implements OnInit {
 
   next() {
     if(this.form.valid) {
-      localStorage.setItem('collateral', JSON.stringify(this.collateral.realEstate));
+      localStorage.setItem('collateral', JSON.stringify(this.collateral));
       this.router.navigate(['summary']);
     }
     this.isClicked = true;

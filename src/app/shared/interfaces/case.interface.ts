@@ -4,11 +4,12 @@ import { Customer } from './customer.interface';
 export interface Case {
   caseId: number;
   status: string;
-  amount: number;
-  finished: boolean;
+  purchaseAmount: number;
+  loanAmount: number;
+  income: number;
+  equity: number;
+  debt: number;
   date: Date;
   product: Product;
   customer: Customer;
-  gatheredDebt: number;
-  totalEquity: number;
 }
