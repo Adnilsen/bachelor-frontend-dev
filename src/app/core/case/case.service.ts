@@ -15,10 +15,10 @@ export class CaseService {
   }
 
   startHousingLoan(caseId: number) {
-    return this.httpClient.get<string>('http://localhost:8080/cases/' + caseId);
+    return this.httpClient.get<Case>('http://localhost:8080/cases/' + caseId);
   }
 
-  updateCase(caseItem: Case) {
+  updateCase(caseItem: Case, loanType: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
@@ -26,7 +26,7 @@ export class CaseService {
         'Response-Type': 'text'
       })
     };
-    return this.httpClient.post<string>('http://localhost:8080/updateApplication/Green', JSON.stringify(caseItem), httpOptions);
+    return this.httpClient.post<string>('http://localhost:8080/cases/updateApplication/' + loanType, JSON.stringify(caseItem), httpOptions);
   }
 
   getMockCases() {

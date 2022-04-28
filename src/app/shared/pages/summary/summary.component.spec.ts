@@ -22,7 +22,6 @@ describe('SummaryComponent', () => {
         id: 1,
         address: "Solli gata 2",
         type: "Borettslag",
-        purchaseAmount: 3_000_000,
         cooperativeName: "Turten Borettslag",
         unitNumber: 23,
         sharedDebt: 120_000,
@@ -34,25 +33,27 @@ describe('SummaryComponent', () => {
       } as RealEstate
     } as Collateral,
     case: {
-    caseId: 133,
+      caseId: 133,
       status: "Klar til å fortsette",
-    amount: 2_500_000,
-    finished: true,
-    date: new Date(),
-    product: {
-    type: "Finansieringsbevis bolig",
-      name: "Finansieringsbevis bolig",
-      description: "Bra finbev",
-      id: 1
-  } as Product,
-    customer: {
-    role: "owner",
-      customerFirstName: "Kari",
-      customerLastName: "Normann",
-      id: 123,
-  } as Customer,
-    gatheredDebt: 200000,
-    totalEquity: 500000
+      purchaseAmount: 2_500_000,
+      loanAmount: 2_500_000,
+      finished: true,
+      date: new Date(),
+      product: {
+        type: "Finansieringsbevis bolig",
+        name: "Finansieringsbevis bolig",
+        description: "Bra finbev",
+        id: 1
+      } as Product,
+      customer: {
+        role: "owner",
+        customerFirstName: "Kari",
+        customerLastName: "Normann",
+        id: 123,
+      } as Customer,
+      debt: 200000,
+      equity: 500000,
+      income: 2000000
     } as Case,
     broker: {
       name: 'Nordvik',
@@ -76,7 +77,7 @@ describe('SummaryComponent', () => {
     localStorage.setItem('collateral', JSON.stringify(initialState.collateral));
     localStorage.setItem('case', JSON.stringify(initialState.case));
     localStorage.setItem('broker', JSON.stringify(initialState.broker));
-    component.collateral = initialState.collateral.realEstate;
+    component.collateral = initialState.collateral;
     console.log(component.collateral)
     fixture.detectChanges();
   });

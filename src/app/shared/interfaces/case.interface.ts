@@ -12,4 +12,5 @@ export interface Case {
   date: Date;
   product: Product;
   customer: Customer;
+  downpaymentPeriod?: number;
 }

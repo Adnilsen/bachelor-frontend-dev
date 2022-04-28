@@ -20,7 +20,8 @@ describe('CollateralPageComponent', () => {
     case: {
       caseId: 133,
       status: "Klar til å fortsette",
-      amount: 2_500_000,
+      purchaseAmount: 2_500_000,
+      loanAmount: 2_500_000,
       finished: true,
       date: new Date(),
       product: {
@@ -35,9 +36,14 @@ describe('CollateralPageComponent', () => {
         customerLastName: "Normann",
         id: 123,
       } as Customer,
-      gatheredDebt: 200000,
-      totalEquity: 500000
-    } as Case
+      debt: 200000,
+      equity: 500000,
+      income: 2000000
+    } as Case,
+    broker: {
+      brokerId: 1,
+      name: "Nordvik"
+    }
   }
 
   beforeEach(async () => {
@@ -52,6 +58,7 @@ describe('CollateralPageComponent', () => {
     component = fixture.componentInstance;
     component.postName = initialState.postName;
     localStorage.setItem('case', JSON.stringify(initialState.case));
+    localStorage.setItem('broker', JSON.stringify(initialState.broker));
     fixture.detectChanges();
   });
 

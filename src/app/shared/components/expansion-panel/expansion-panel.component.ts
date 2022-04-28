@@ -57,6 +57,13 @@ export class ExpansionPanelComponent implements OnInit {
 
   next(curCase: Case) {
     localStorage.setItem('case', JSON.stringify(curCase));
-    this.router.navigate(['landing']);
+    if(curCase.status === 'Fortsett søknad') {
+      this.router.navigate(['broker']);
+
+    } else {
+      this.router.navigate(['landing']);
+    }
+
+
   }
 }

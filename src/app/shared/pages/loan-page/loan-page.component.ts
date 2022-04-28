@@ -23,7 +23,6 @@ export class LoanPageComponent implements OnInit {
 
   minEquity!: number;
 
-
   equityToUse = 50000;
 
   maxValue = 2000000;
@@ -61,6 +60,8 @@ export class LoanPageComponent implements OnInit {
 
   loanValueValid = true;
 
+  loanType!: string;
+
   constructor(private router: Router, private caseService: CaseService) {}
 
   ngOnInit(): void {
@@ -73,6 +74,17 @@ export class LoanPageComponent implements OnInit {
     this.collateral = JSON.parse(localStorage.getItem('collateral'));
     // @ts-ignore
     this.case = JSON.parse(localStorage.getItem('case'));
+
+    if(this.collateral.realEstate.energyClass === "A" || this.collateral.realEstate.energyClass === "B") {
+      this.loanType = "Green"
+    } else{
+      if(this.case.customer.age < 32){
+        this.loanType = "Young";
+      }
+    }
+
+    console.log(this.loanType)
+
 
     this.maxValue = this.collateral.purchaseAmount * 0.85;
     this.minEquity = this.collateral.purchaseAmount * 0.15;
@@ -162,11 +174,14 @@ export class LoanPageComponent implements OnInit {
 
   next() {
     if (this.form.valid) {
-      this.caseService.updateCase(this.case).subscribe((resp: string) => {
-        if(resp) {
-          this.router.navigate(['result'])
-        }
-      });
+      this.case.loanAmount = this.value;
+      this.case.downpaymentPeriod = this.loanDuration;
+      this.case.equity = this.equityToUse;
+      this.case.purchaseAmount = this.collateral.purchaseAmount;
+      this.caseService.updateCase(this.case, this.loanType).subscribe((resp: string) => {
+        console.log(resp)
+        this.router.navigate(['result'])
+      }, error => console.log(error));
     }
     this.isClicked = true;
   }

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-result',
@@ -11,4 +12,10 @@ export class ResultComponent{
 
   panelOpenState = true;
 
+  constructor(private router: Router) {}
+
+
+  next() {
+    this.router.navigate(['your-loan-applications'])
+  }
 }

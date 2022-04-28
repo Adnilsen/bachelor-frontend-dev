@@ -42,12 +42,20 @@
       <div class="rightContainer">
         <h2>Lån</h2>
         <div>
-          <div style='width: 100%; background-color: #E3FFDE; display: flex; align-content: center; height: 4rem'>
+          <div style='width: 100%; background-color: #E3FFDE; display: flex; align-content: center; height: 4rem' *ngIf="loanType === 'Green'">
             <div>
               <img src='./assets/images/leaf2.png' alt='' style='margin: 1rem 1rem 0.7rem 0.7rem; width: 2.5rem; height: 2.5rem'>
             </div>
             <div style='display: flex; align-content: center; margin-top: 0.6rem;'>
               <p style="font-weight: 600">Du kvalifiserer for grønt boliglån for unge</p>
+            </div>
+          </div>
+          <div style='width: 100%; background-color: #FFD4FD; display: flex; align-content: center; height: 4rem' *ngIf="loanType === 'Young'">
+            <div>
+              <img src='./assets/images/leaf2.png' alt='' style='margin: 1rem 1rem 0.7rem 0.7rem; width: 2.5rem; height: 2.5rem'>
+            </div>
+            <div style='display: flex; align-content: center; margin-top: 0.6rem;'>
+              <p style="font-weight: 600">Du kvalifiserer for boliglån for unge</p>
             </div>
           </div>
         </div>

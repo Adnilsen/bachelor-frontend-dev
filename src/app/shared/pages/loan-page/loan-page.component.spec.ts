@@ -8,6 +8,7 @@ import {Collateral, RealEstate} from "../../interfaces/collateral.interface";
 import {Product} from "../../interfaces/product.interface";
 import {Customer} from "../../interfaces/customer.interface";
 import {Case} from "../../interfaces/case.interface";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('LoanPageComponent', () => {
   let component: LoanPageComponent;
@@ -17,12 +18,12 @@ describe('LoanPageComponent', () => {
       id: 1,
       brokerId: 22,
       socialSecurityNr: 22099734456,
+      purchaseAmount: 3_000_000,
       purchaseDate: new Date(),
       realEstate: {
         id: 1,
         address: "Solli gata 2",
         type: "Borettslag",
-        purchaseAmount: 3_000_000,
         cooperativeName: "Turten Borettslag",
         unitNumber: 23,
         sharedDebt: 120_000,
@@ -36,7 +37,8 @@ describe('LoanPageComponent', () => {
     case: {
       caseId: 133,
       status: "Klar til å fortsette",
-      amount: 2_500_000,
+      purchaseAmount: 2_500_000,
+      loanAmount: 2_500_000,
       finished: true,
       date: new Date(),
       product: {
@@ -51,8 +53,9 @@ describe('LoanPageComponent', () => {
         customerLastName: "Normann",
         id: 123,
       } as Customer,
-      gatheredDebt: 200000,
-      totalEquity: 500000
+      debt: 200000,
+      equity: 500000,
+      income: 2000000
     } as Case,
     broker: {
       name: 'Nordvik',
@@ -63,7 +66,7 @@ describe('LoanPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoanPageComponent],
-      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgxMaskModule.forRoot()],
+      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgxMaskModule.forRoot(), HttpClientTestingModule],
     }).compileComponents();
   });
 
