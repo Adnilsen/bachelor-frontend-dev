@@ -57,6 +57,7 @@ describe('BrokerPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
   it('should check form validety on start', () => {
     expect(component.form.valid).toBeFalsy();
   });
@@ -75,13 +76,12 @@ describe('BrokerPageComponent', () => {
     po.getBrokerDropdown.nativeElement.click();
     fixture.detectChanges();
     // List contains brokers + choose none option
-    expect(po.getBrokerElement.length).toBe(3);
-
+    expect(po.getBrokerElement.length).toBe(2);
     po.getBrokerElement[1].nativeElement.click();
     fixture.detectChanges();
     let text = po.getBrokerElement[1].nativeElement.innerText;
     broker.setValue(text);
-    expect(broker.value).toBe('Nordvik');
+    expect(broker.value).toBe('DnB');
     expect(broker.valid).toBeTruthy();
   });
 
@@ -99,6 +99,10 @@ describe('BrokerPageComponent', () => {
 
   class PageObject {
     constructor(private fixture: ComponentFixture<BrokerPageComponent>) {}
+
+    get getPageTitle(): DebugElement {
+      return fixture.debugElement.query(By.css('h1'));
+    }
 
     get getBrokerDropdown(): DebugElement {
       return fixture.debugElement.query(By.css('mat-select'));

@@ -11,7 +11,6 @@
           <label class='selectorLabel'>{{'broker-page.expansion-panel.title' | translate}}</label>
           <mat-form-field appearance="fill">
             <mat-select [formControl]="brokerControl" required placeholder='Megler'>
-              <mat-option>--</mat-option>
               <mat-option *ngFor='let broker of brokers' [value]='broker'>{{broker.name}}</mat-option>
             </mat-select>
             <mat-error class='error' *ngIf="brokerControl.invalid">*Velg en megler</mat-error>

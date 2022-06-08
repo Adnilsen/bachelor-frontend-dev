@@ -14,7 +14,7 @@
     "information-title": "Hent kjøpskontrakt fra megler",
     "information-content": "Vi kan hente kjøpskontrakten automatisk fra noen av landets meglere! Finnes ikke megler i listen under må informasjon om den nye boligen din registreres manuelt.",
     "expansion-panel": {
-      "title": "Velg megler du vil hente kjøpskontrakt fra",
+      "title": "Velg megler",
       "label": "Megler",
       "placeholder": "-- Ingen --",
       "error": "*Velg megler"

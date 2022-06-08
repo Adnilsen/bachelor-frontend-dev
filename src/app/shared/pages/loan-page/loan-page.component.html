@@ -14,10 +14,10 @@
           <div style='display: flex; flex-direction: column; width: 50%'>
             <label class='selectorLabel'>Lånebeløp</label>
             <mat-form-field appearance="fill">
-              <input matInput [(ngModel)]='value' [mask]='"separator"' (ngModelChange)='inputValueChanged($event)' [maxLength]="9" (focusout)="minValueChange($event)">
+              <input aria-label="amount" matInput [(ngModel)]='value' [mask]='"separator"' (ngModelChange)='inputValueChanged($event)' [maxLength]="9" (focusout)="minValueChange($event)">
             </mat-form-field>
           </div>
-          <mat-slider [max]='maxValue' [min]='minValue' [step]='sliderStep' [(ngModel)]="value" (input)='sliderValueChanged($event)'></mat-slider>
+          <mat-slider aria-label="valueSlider" [max]='maxValue' [min]='minValue' [step]='sliderStep' [(ngModel)]="value" (input)='sliderValueChanged($event)'></mat-slider>
         </div>
         <div style='margin-bottom: 2rem' class='sliderContainer'>
           <div style='width: 100%; background-color: #F3F5F6; display: flex; align-content: center; height: 4rem'>
@@ -33,10 +33,10 @@
           <div style='display: flex; flex-direction: column; width: 50%;'>
             <label class='selectorLabel'>Nedbetalingstid i år</label>
             <mat-form-field appearance="fill">
-              <input matInput [(ngModel)]='loanDuration' [maxLength]="2" (ngModelChange)='inputDurationChanged($event)'>
+              <input aria-label="duration" matInput [(ngModel)]='loanDuration' [maxLength]="2" (ngModelChange)='inputDurationChanged($event)'>
             </mat-form-field>
           </div>
-          <mat-slider [max]='30' [min]='1' [step]='1' [(ngModel)]="loanDuration" (input)='sliderDurationChanged($event)'></mat-slider>
+          <mat-slider aria-label="durationSlider" [max]='30' [min]='1' [step]='1' [(ngModel)]="loanDuration" (input)='sliderDurationChanged($event)'></mat-slider>
         </div>
       </div>
       <div class="rightContainer">
@@ -50,9 +50,9 @@
               <p style="font-weight: 600">Du kvalifiserer for grønt boliglån for unge</p>
             </div>
           </div>
-          <div style='width: 100%; background-color: #FFD4FD; display: flex; align-content: center; height: 4rem' *ngIf="loanType === 'Young'">
+          <div style='width: 100%; background-color: #e8e8e8; display: flex; align-content: center; height: 4rem' *ngIf="loanType === 'Young'">
             <div>
-              <img src='./assets/images/leaf2.png' alt='' style='margin: 1rem 1rem 0.7rem 0.7rem; width: 2.5rem; height: 2.5rem'>
+              <img src='./assets/images/success.svg' alt='' style='margin: 1rem 1rem 0.7rem 0.7rem; width: 2.5rem; height: 2.5rem'>
             </div>
             <div style='display: flex; align-content: center; margin-top: 0.6rem;'>
               <p style="font-weight: 600">Du kvalifiserer for boliglån for unge</p>

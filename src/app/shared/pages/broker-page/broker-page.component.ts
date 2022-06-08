@@ -28,10 +28,6 @@ export class BrokerPageComponent implements OnInit {
       confirmedContractData: this.requiredConfirmController
     });
 
-    this.loading = false;
-
-    //this.brokers = this.brokerService.getMockBrokers();
-
     this.brokerService.getBrokers().subscribe((brokers) => {
       this.loading = false;
       this.brokers = brokers;
@@ -41,10 +37,8 @@ export class BrokerPageComponent implements OnInit {
 
   isClicked: boolean = false;
 
-
   exit() {
     this.router.navigate(['']);
-
   }
 
   next() {
