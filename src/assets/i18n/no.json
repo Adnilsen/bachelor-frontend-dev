@@ -3,9 +3,9 @@
     "title": "Før du setter i gang...",
     "information-container": {
       "house": "Gratulerer med kjøp av ny bolig. Vi trenger ytterligere informasjon fra deg for å ferdigstille søknaden.",
-      "loan": "Du kan få en låneramme på <b>inntil 85% av boligverdien</b>, så fremt du har <b>15% av lånerammen i egenkapital</b>",
+      "loan": "Du kan få en låneramme på <b>inntil 85% av boligverdien</b>, så fremt du har <b>15% av lånerammen i egenkapital</b>.",
       "altinn": "Du trenger <b>BankID</b> for å søke. Videre må du oppgi informasjon om hvilken megler du har brukt.",
-      "time": "Prosessen vil ta ca. 4 minutter"
+      "time": "Prosessen vil ta ca. 4 minutter."
     },
     "next-button": "Start søknad"
   },

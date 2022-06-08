@@ -62,6 +62,10 @@ export class LoanPageComponent implements OnInit {
 
   loanType!: string;
 
+  loanCosts: number = 5000;
+
+  purchaseValue!: number;
+
   constructor(private router: Router, private caseService: CaseService) {}
 
   ngOnInit(): void {
@@ -83,12 +87,11 @@ export class LoanPageComponent implements OnInit {
       }
     }
 
-    console.log(this.loanType)
-
 
     this.maxValue = this.collateral.purchaseAmount * 0.85;
     this.minEquity = this.collateral.purchaseAmount * 0.15;
     this.value = this.maxValue;
+    this.purchaseValue = this.collateral.purchaseAmount;
     if (this.minEquity <= this.case.equity) {
       this.minValue = this.collateral.purchaseAmount - this.case.equity;
     } else {
@@ -96,11 +99,14 @@ export class LoanPageComponent implements OnInit {
     }
 
     if( this.collateral.realEstate.type === "Borettslag") {
-      this.totalRealEstateValue = this.collateral.purchaseAmount + 5000;
+      this.totalRealEstateValue = this.collateral.purchaseAmount + this.loanCosts;
     }
     else {
       this.documentFee = (this.collateral.purchaseAmount * 0.025);
-      this.totalRealEstateValue = this.collateral.purchaseAmount + this.documentFee + 5000;
+      this.totalRealEstateValue = this.collateral.purchaseAmount + this.documentFee + this.loanCosts;
+      this.collateral.purchaseAmount = this.collateral.purchaseAmount + this.documentFee;
+      this.minEquity -= this.loanCosts
+      this.minValue = this.totalRealEstateValue - this.case.equity;
     }
 
     this.calculateLoan();
@@ -110,6 +116,7 @@ export class LoanPageComponent implements OnInit {
   sliderValueChanged(value: any) {
     this.value = value.value;
     this.calculateLoan();
+    this.loanValueValid = true;
   }
 
   sliderDurationChanged(duration: any) {
@@ -152,7 +159,12 @@ export class LoanPageComponent implements OnInit {
     this.monthlyLoanPayment = (interestRate / (1 - (1 + interestRate) ** -(12 * this.loanDuration))) * this.value;
     this.totalCost = this.monthlyLoanPayment * 12 * this.loanDuration;
 
-    this.equityToUse = this.collateral.purchaseAmount - this.value;
+    if( this.collateral.realEstate.type === "Borettslag") {
+      this.equityToUse = this.collateral.purchaseAmount - this.value;
+    } else {
+      this.equityToUse = this.collateral.purchaseAmount - this.value + 5000;
+    }
+
   }
 
   appendDaysOfMonth() {
@@ -179,7 +191,7 @@ export class LoanPageComponent implements OnInit {
       this.case.equity = this.equityToUse;
       this.case.purchaseAmount = this.collateral.purchaseAmount;
       this.caseService.updateCase(this.case, this.loanType).subscribe((resp: string) => {
-        console.log(resp)
+        localStorage.setItem('case', JSON.stringify(resp));
         this.router.navigate(['result'])
       }, error => console.log(error));
     }

@@ -49,7 +49,6 @@ export class CollateralPageComponent implements OnInit {
     this.case = JSON.parse(localStorage.getItem('case'))
     // @ts-ignore
     this.broker = JSON.parse(localStorage.getItem('broker'));
-    console.log(this.broker)
 
     this.loading = false;
     // TODO slett etter gjennomgang frontend
@@ -61,7 +60,6 @@ export class CollateralPageComponent implements OnInit {
     }*/
 
     this.altinnService.getAltinnData(this.broker.brokerId, 12049500339).subscribe((collateral) => {
-      console.log(collateral)
       if (collateral) {
         this.collateral = collateral;
         if (collateral.realEstate.type === 'Borettslag') {

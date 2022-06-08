@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Case } from '../../interfaces/case.interface';
 import {Router} from "@angular/router";
 
@@ -7,17 +7,13 @@ import {Router} from "@angular/router";
   templateUrl: './expansion-panel.component.html',
   styleUrls: ['./expansion-panel.component.scss'],
 })
-export class ExpansionPanelComponent implements OnInit {
+export class ExpansionPanelComponent {
   // @ts-ignore
   @Input() cases: Case[];
 
   panelOpenState = true;
 
   constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    console.log(this.cases);
-  }
 
   mapImageSource(status: string) {
     switch (status) {

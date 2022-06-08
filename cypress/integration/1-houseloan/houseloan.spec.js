@@ -34,8 +34,8 @@ describe('house loan', () => {
       statusCode: 200,
       body: [
         {
-          brokerId: 1,
-          name: "Nordvik"
+          brokerId: 4,
+          name: "DnB Eiendom"
         }
       ]
     });
@@ -125,7 +125,7 @@ describe('house loan', () => {
     cy.wait(3000);
     cy.get('mat-select').first().click();
     cy.wait(3000);
-    cy.get('mat-option').first().click();
+    cy.get('mat-option').contains('DnB Eiendom').click();
     cy.get('mat-checkbox').first().click();
     cy.get('.nextBtn').first().click();
   });
